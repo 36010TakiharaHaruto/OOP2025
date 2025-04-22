@@ -10,6 +10,16 @@
             static double InchToMeter(int inch) {
                 return inch * 0.0254;
             }
+
+            //メートルからインチへの変換
+            for (int meter = 1; meter <= 10; meter++) {
+                double inch = MeterToInch(meter);
+                Console.WriteLine($"{meter}m = {inch:0.0000}inch");
+            }
+
+            static double MeterToInch(int meter) {
+                return meter / 0.0254;
+            }
         }
     }
 }
