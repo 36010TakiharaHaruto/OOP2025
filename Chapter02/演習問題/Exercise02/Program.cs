@@ -2,7 +2,6 @@
     internal class Program {
         static void Main(string[] args) {
 
-
             Console.WriteLine("1:インチからメートルに変換");
             Console.WriteLine("2:メートルからインチに変換");
             int conversion = int.Parse(Console.ReadLine());
@@ -50,5 +49,6 @@
         static double MeterToInch(int meter) {
             return meter / 0.0254;
         }
+
     }
 }
