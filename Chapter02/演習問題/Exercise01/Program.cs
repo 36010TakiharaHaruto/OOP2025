@@ -1,17 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace Exercise01 {
     internal class Program {
         static void Main(string[] args) {
-            //2.1.3
-            var songs = new Song[] {
-    new Song("Let it be", "The Beatles", 243),
-    new Song("Bridge Over Troubled Water", "Simon & Garfunkel", 293),
-    new Song("Close To You", "Carpenters", 276),
-    new Song("Honesty", "Billy Joel", 231),
-    new Song("I Will Always Love You", "Whitney Houston", 273),
-    };
-    }
+            //歌データを入れるリストオブジェクトを生成
+
+
+            while (title == "end") {
+                Console.WriteLine("*****曲の登録*****");
+                Console.WriteLine("曲名：");
+                var title = Console.ReadLine();
+                Console.WriteLine("アーティスト名");
+                var artistname = Console.ReadLine();
+                Console.WriteLine("演奏時間（秒）");
+                int length = Console.ReadLine();
+            }
+        }
         //2.1.4
         private static void printSong(Song[] songs) {
 #if false
