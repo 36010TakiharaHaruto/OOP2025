@@ -1,30 +1,37 @@
 ﻿namespace Section01 {
     internal class Program {
 
-       
-
         static void Main(string[] args) {
-            //Console.Write("カウントしたい数値：");
-            //int num = int.Parse(Console.ReadLine());
+            var cities = new List<string> {
+                "Tokyo",
+                "New Delhi",
+                "Bangkok",
+                "London",
+                "Paris",
+                "Berlin",
+                "Canberra",
+                "Hong Kong",
+            };
 
-            var numbers = new[] { 5, 3, 9, 6, 7, 5, 8, 1, 0, 5, 10, 4 };
+            //var exists = cities.Exists(s => s[0] == 'A');
+            //Console.WriteLine(exists);
 
-            Console.WriteLine(Count( numbers,n => n >= 5 && n < 10));
+            //var name = cities.Find(s => s.Length == 6);
+            //Console.WriteLine(name);
+
+            //var index = cities.FindIndex(s => s == "Berlin");
+            //Console.WriteLine(index);
+
+            //var names = cities.FindAll(s => s.Length <= 5);
+            //cities.ForEach(Console.WriteLine);
+
+            //var lowerList = cities.ConvertAll(s => s.ToLower());
+            //lowerList.ForEach(Console.WriteLine);
+
+            var upperList = cities.ConvertAll(s => s.ToUpper());
+            upperList.ForEach(Console.WriteLine);
+
 
         }
-
-      
-
-        static int Count(int[] numbers, Predicate<int> judge) {
-            var count = 0;
-            foreach (var n in numbers) {
-                //引数で受け取ったメソッドを呼び出す
-                if ( judge(n) == true) {
-                    count++;
-                }
-            }
-            return count;
-        }
-
     }
 }
