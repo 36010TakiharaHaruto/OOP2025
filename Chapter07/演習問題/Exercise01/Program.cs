@@ -31,6 +31,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise3(int[] numbers) {
+            //D3は１０進数３桁にする
             foreach (var n in numbers.Select(n => n.ToString("D3")).ToArray()) {
                 Console.WriteLine(n);
             }
