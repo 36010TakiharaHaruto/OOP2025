@@ -1,4 +1,6 @@
 ﻿
+using System.Text;
+
 namespace Exercise03 {
     internal class Program {
         static void Main(string[] args) {
@@ -32,7 +34,12 @@ namespace Exercise03 {
         }
 
         private static void Exercise3(string text) {
-
+            var sb = new StringBuilder();
+            foreach(var word in text.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries)) {
+                sb.Append(word);
+            }
+            var t = sb.ToString();
+            Console.WriteLine(t);
         }
 
         private static void Exercise4(string text) {
