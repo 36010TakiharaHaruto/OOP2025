@@ -6,6 +6,7 @@ namespace Exercise03 {
         static void Main(string[] args) {
             var text = "Jackdaws love my big sphinx of quartz";
 
+
             Console.WriteLine("6.3.1");
             Exercise1(text);
 
@@ -35,8 +36,8 @@ namespace Exercise03 {
 
         private static void Exercise3(string text) {
             var sb = new StringBuilder();
-            foreach(var word in text.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries)) {
-                sb.Append(word);
+            foreach(var word in text.Split(' ')) {
+                sb.Append(word + " ");
             }
             var t = sb.ToString();
             Console.WriteLine(t);
