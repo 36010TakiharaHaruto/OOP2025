@@ -21,7 +21,11 @@ namespace Exercise03 {
 
             Console.WriteLine("6.3.5");
             Exercise5(text);
+
+            Console.WriteLine("6.3.99");
+            Exercise6(text);
         }
+
 
         private static void Exercise1(string text) {
             //var cnt = text.Count(char.IsWhiteSpace)でも可
@@ -56,5 +60,41 @@ namespace Exercise03 {
                 Console.WriteLine(word);
             }
         }
+
+        private static void Exercise6(string text) {
+            var nexttext = text.ToLower();
+            Console.WriteLine("a:" + nexttext.Where(c => c == 'a').Count());
+            Console.WriteLine("b:" + nexttext.Where(c => c == 'b').Count());
+            Console.WriteLine("c:" + nexttext.Where(c => c == 'c').Count());
+            Console.WriteLine("d:" + nexttext.Where(c => c == 'd').Count());
+            Console.WriteLine("e:" + nexttext.Where(c => c == 'e').Count());
+            Console.WriteLine("f:" + nexttext.Where(c => c == 'f').Count());
+            Console.WriteLine("g:" + nexttext.Where(c => c == 'g').Count());
+            Console.WriteLine("h:" + nexttext.Where(c => c == 'h').Count());
+            Console.WriteLine("i:" + nexttext.Where(c => c == 'i').Count());
+            Console.WriteLine("j:" + nexttext.Where(c => c == 'g').Count());
+            Console.WriteLine("k:" + nexttext.Where(c => c == 'k').Count());
+            Console.WriteLine("l:" + nexttext.Where(c => c == 'l').Count());
+            Console.WriteLine("m:" + nexttext.Where(c => c == 'm').Count());
+            Console.WriteLine("n:" + nexttext.Where(c => c == 'n').Count());
+            Console.WriteLine("o:" + nexttext.Where(c => c == 'o').Count());
+            Console.WriteLine("p:" + nexttext.Where(c => c == 'p').Count());
+            Console.WriteLine("q:" + nexttext.Where(c => c == 'q').Count());
+            Console.WriteLine("r:" + nexttext.Where(c => c == 'r').Count());
+            Console.WriteLine("s:" + nexttext.Where(c => c == 's').Count());
+            Console.WriteLine("t:" + nexttext.Where(c => c == 't').Count());
+            Console.WriteLine("u:" + nexttext.Where(c => c == 'u').Count());
+            Console.WriteLine("v:" + nexttext.Where(c => c == 'v').Count());
+            Console.WriteLine("w:" + nexttext.Where(c => c == 'w').Count());
+            Console.WriteLine("x:" + nexttext.Where(c => c == 'x').Count());
+            Console.WriteLine("y:" + nexttext.Where(c => c == 'y').Count());
+            Console.WriteLine("z:" + nexttext.Where(c => c == 'z').Count());
+
+
+
+
+        }
+
+
     }
 }
