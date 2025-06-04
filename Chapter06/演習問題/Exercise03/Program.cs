@@ -1,4 +1,5 @@
 ﻿
+using System.Data.SqlTypes;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -90,11 +91,34 @@ namespace Exercise03 {
             //Console.WriteLine("x:" + nexttext.Where(c => c == 'x').Count());
             //Console.WriteLine("y:" + nexttext.Where(c => c == 'y').Count());
             //Console.WriteLine("z:" + nexttext.Where(c => c == 'z').Count());
-            
-            var nexttext = text.ToLower();
-            for (char c = 'a'; c <= 'z'; c++) {
-                var count = nexttext.Count(ch => ch == c);
-                Console.WriteLine(c + ":" + count);
+
+
+            //var str = text.ToLower().Replace(" ","");
+            //var alphDicCount = Enumerable.Range('a', 26)
+            //    .ToDictionary(num => ((char)num).ToString(), num => 0);
+            //foreach (var alph in str) {
+            //    alphDicCount[alph.ToString()]++;
+            //}
+            //foreach (var item in alphDicCount) {
+            //    Console.WriteLine($"{item.Key}:{item.Value}");
+            //}
+
+
+
+            //var str = text.ToLower().Replace(" ", "");
+            //var array = Enumerable.Repeat(0, 26).ToArray();
+            //foreach (var alph in str) {
+            //    array[alph - 'a']++;
+            //}
+            //for (char ch = 'a'; ch <= 'z'; ch++) {
+            //    Console.WriteLine($"{ch}:{text.Count(tc => tc == ch)}");
+            //}
+
+
+
+                var nexttext = text.ToLower();
+            for (var c = 'a'; c <= 'z'; c++) {
+                Console.WriteLine(c + ":" + nexttext.Count(ct => ct == c));
             }
 
         }
