@@ -29,6 +29,10 @@ namespace Exercise02 {
             bool ret = ym.Is21Century;
         }
 
+        //5.2.3
+        //ここにメソッド
+
+
         private static void Exercise4(YearMonth[] ymCollection) {
         }
 
