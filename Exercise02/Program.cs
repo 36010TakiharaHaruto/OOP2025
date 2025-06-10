@@ -43,7 +43,7 @@ namespace Exercise02 {
 
         private static void Exercise4(YearMonth[] ymCollection) {
             var first21C = FindFirst21C(ymCollection);
-            if (first21C != null) {
+            if (first21C is not null) {
                 Console.WriteLine(first21C.Year + "年");
             } else {
                 Console.WriteLine("21世紀のデータはありません");
@@ -51,6 +51,10 @@ namespace Exercise02 {
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
+            var nextMonths = ymCollection.Select(ym => ym.AddOneMonth()).ToArray();
+            foreach (var ym in nextMonths) {
+                Console.WriteLine(ym);
+            }
         }
     }
 }

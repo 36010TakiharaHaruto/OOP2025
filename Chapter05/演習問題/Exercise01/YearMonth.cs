@@ -30,8 +30,5 @@ namespace Exercise01 {
 
         //5.1.4
         public override string ToString() => $"{Year}年{Month}月";
-
-
-
     }
 }
