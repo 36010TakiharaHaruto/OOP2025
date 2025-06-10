@@ -42,12 +42,15 @@ namespace Exercise02 {
 
 
         private static void Exercise4(YearMonth[] ymCollection) {
-            var first21C = FindFirst21C(ymCollection);
-            if (first21C is not null) {
-                Console.WriteLine(first21C.Year + "年");
-            } else {
-                Console.WriteLine("21世紀のデータはありません");
-            }
+            //var first21C = FindFirst21C(ymCollection);
+            //if (first21C is not null) {
+            //    Console.WriteLine(first21C.Year + "年");
+            //} else {
+            //    Console.WriteLine("21世紀のデータはありません");
+            //}
+
+            //null合体演算子,null条件演算子
+            Console.WriteLine(FindFirst21C(ymCollection)?.ToString() ?? "21世紀のデータはありません");
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
