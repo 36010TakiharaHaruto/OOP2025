@@ -55,7 +55,7 @@
 
 
                     case "9"://無限ループを抜ける
-
+                        endFlag = true;
                         break;
                 }
             }
