@@ -84,6 +84,7 @@
         private static void searchPrefCaptalLocation() {
             Console.Write("都道府県:");
             String? searchPref = Console.ReadLine();
+            Console.WriteLine(prefOfficeDict[searchPref]);
         }
     }
 }
