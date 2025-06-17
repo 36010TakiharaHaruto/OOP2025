@@ -10,11 +10,11 @@
         //メソッドの概要：科目別点数を求める
         private static IEnumerable<Student> ReadScore(string filePath) {
             Dictionary<string, int> dict = new Dictionary<string, int>();
-            foreach (Student stu in _score) {
-                if (dict.ContainsKey(stu.Name))
-                    dict[stu.Name] += stu.Score;
+            foreach (Student student in _score) {
+                if (dict.ContainsKey(student.Name))
+                    dict[student.Name] += student.Score;
                 else
-                    dict[stu.Name] = stu.Score;
+                    dict[student.Name] = student.Score;
             }
             return (IEnumerable<Student>)dict;
         }
