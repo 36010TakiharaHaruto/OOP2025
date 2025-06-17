@@ -82,22 +82,23 @@ namespace Test02 {
         //問題４　10以上50以下の数字のみを表示（即時実行でも可とする）
         //　　　　出力結果【12 14 20 40 35 31 17 48】
         private static void Exercise04(int[] numbers) {
-            
-
+            foreach (var item in numbers.Where(n => n >= 10 && n <= 50)) {
+                Console.Write(item + " ");
+            }
         }
 
         //問題５　Countメソッドを使い、小文字の'n'が含まれている都市名がいくつあるかカウントして結果を表示
         //　　　　出力結果【5】
         private static void Exercise05(List<string> cities) {
-            
-
+            var count = cities.Count(s => s.Contains('n'));
+            Console.WriteLine(count);
         }
 
         //問題６　全都市数
         //　　　　出力結果【8】
         private static void Exercise06(List<string> cities) {
-            
-
+            var count = cities.Count();
+            Console.WriteLine(count);
         }
 
         //問題７　各都市名をアルファベット順（昇順）に出力
@@ -111,8 +112,10 @@ namespace Test02 {
         //          Paris
         //          Tokyo】
         private static void Exercise07(List<string> cities) {
-            
-
+            var selected = cities.Order().ToArray();
+            foreach (var name in selected) {
+                Console.WriteLine(name);
+            }
         }
 
         //問題８　各都市の文字数
