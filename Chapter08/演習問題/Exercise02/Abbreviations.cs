@@ -30,4 +30,10 @@ public class Abbreviations {
             }
         }
     }
+
+    //8-2-1 countプロパティを追加
+    public int Count => _dict.Count();
+
+    //8-2-2Removeメソッドを追加
+    public bool Remove(string abb) => _dict.Remove(abb);
 }
