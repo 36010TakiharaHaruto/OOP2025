@@ -1,4 +1,6 @@
 // 略語と対応する日本語を管理するクラス
+using System.Security.Cryptography;
+
 public class Abbreviations {
     private readonly Dictionary<string, string> _dict = new();
 
@@ -36,4 +38,9 @@ public class Abbreviations {
 
     //8-2-2Removeメソッドを追加
     public bool Remove(string abb) => _dict.Remove(abb);
+
+    //8-2-4
+    public IEnumerable<KeyValuePair<string,string>> GetAll() {
+        return _dict;
+    }
 }
