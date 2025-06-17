@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 namespace Test01 {
     public class Student {
         //学生の名前
-        public string Name { get; init; } 
+        public required string Name { get; init; } 
         //科目名
-        public string Subject { get; init; }
+        public required string Subject { get; init; }
         //点数
-        public int Score { get; init; }
-
+        public required int Score { get; init; }
     }
-
-
 }

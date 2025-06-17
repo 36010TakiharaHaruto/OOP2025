@@ -9,19 +9,19 @@
 
         //メソッドの概要：科目別点数を求める
         private static IEnumerable<Student> ReadScore(string filePath) {
-            Dictionary<string,int> dict = new Dictionary<string, int>();
+            Dictionary<string, int> dict = new Dictionary<string, int>();
             foreach (Student stu in _score) {
                 if (dict.ContainsKey(stu.Name))
                     dict[stu.Name] += stu.Score;
                 else
                     dict[stu.Name] = stu.Score;
             }
-            return dict;
+            return (IEnumerable<Student>)dict;
         }
 
         //メソッドの概要： 集計結果を出力する
         public IDictionary<string, int> GetPerStudentScore() {
-        public static IEnumerable<Student> ReadSales(string filePath) {
+              public static IEnumerable<Student> ReadSales(string filePath) {
             var score = new List<Student>();
             var lines = File.ReadAllLines(filePath);
             foreach (var line in lines) {
