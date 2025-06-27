@@ -28,12 +28,14 @@ namespace Exercise02 {
 
         // 9.2.1【ここにプログラムを作成する】
         static DateTime NextWeek(DateTime date, DayOfWeek dayOfWeek) {
-            var days = (int)dayOfWeek - (int)(date.DayOfWeek);
-            if (days <= 0) {
-                days += 7;
-            }
+            //var nextweek = date.AddDays(7);//1週間後
+            //var days = (int)dayOfWeek - (int)(date.DayOfWeek);//1週間後の日知曜日の日付を求める
+            //return nextweek.AddDays(days); //１週間後の日付から５日戻す
+            var days = 7 - (int)(date.DayOfWeek) + (int)dayOfWeek;
             return date.AddDays(days);
         }
+
+
 
         private static void Exercise2() {
             var birthday = new DateOnly(2001, 4, 19);
@@ -44,9 +46,12 @@ namespace Exercise02 {
 
         // 9.2.2【ここにプログラムを作成する】
         static int GetAge(DateOnly birthday, DateOnly targetDay) {
-
-
-
+                var age = targetDay.Year - birthday.Year;
+                if (targetDay < birthday.AddYears(age)) {
+                    age--;
+                }
+                return age;
+      
         }
     }
 }
