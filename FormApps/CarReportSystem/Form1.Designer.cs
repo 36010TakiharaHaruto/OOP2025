@@ -50,16 +50,32 @@
             btRecordDelete = new Button();
             ofdPicFileOpen = new OpenFileDialog();
             btNewRecord = new Button();
+            ssMessageArea = new StatusStrip();
+            tsslbMessage = new ToolStripStatusLabel();
+            menuStrip1 = new MenuStrip();
+            ファイルFToolStripMenuItem = new ToolStripMenuItem();
+            開くToolStripMenuItem = new ToolStripMenuItem();
+            保存ToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            色設定ToolStripMenuItem = new ToolStripMenuItem();
+            tsmiExit = new ToolStripMenuItem();
+            ヘルプHToolStripMenuItem = new ToolStripMenuItem();
+            tsmiAbout = new ToolStripMenuItem();
+            cdColor = new ColorDialog();
+            ofdReportfileopen = new OpenFileDialog();
+            sfdReportFileSave = new SaveFileDialog();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecord).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
+            ssMessageArea.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label1.Location = new Point(80, 26);
+            label1.Location = new Point(17, 37);
             label1.Name = "label1";
             label1.Size = new Size(62, 32);
             label1.TabIndex = 0;
@@ -69,7 +85,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label2.Location = new Point(80, 92);
+            label2.Location = new Point(17, 103);
             label2.Name = "label2";
             label2.Size = new Size(86, 32);
             label2.TabIndex = 0;
@@ -79,7 +95,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label3.Location = new Point(80, 159);
+            label3.Location = new Point(17, 170);
             label3.Name = "label3";
             label3.Size = new Size(79, 32);
             label3.TabIndex = 0;
@@ -89,7 +105,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label4.Location = new Point(80, 224);
+            label4.Location = new Point(17, 235);
             label4.Name = "label4";
             label4.Size = new Size(62, 32);
             label4.TabIndex = 0;
@@ -99,7 +115,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label5.Location = new Point(80, 286);
+            label5.Location = new Point(17, 297);
             label5.Name = "label5";
             label5.Size = new Size(83, 32);
             label5.TabIndex = 0;
@@ -109,7 +125,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label6.Location = new Point(80, 387);
+            label6.Location = new Point(17, 398);
             label6.Name = "label6";
             label6.Size = new Size(62, 32);
             label6.TabIndex = 0;
@@ -119,7 +135,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label7.Location = new Point(532, 27);
+            label7.Location = new Point(469, 38);
             label7.Name = "label7";
             label7.Size = new Size(62, 32);
             label7.TabIndex = 0;
@@ -128,7 +144,7 @@
             // dtpDate
             // 
             dtpDate.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            dtpDate.Location = new Point(173, 26);
+            dtpDate.Location = new Point(110, 37);
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(200, 33);
             dtpDate.TabIndex = 1;
@@ -137,7 +153,7 @@
             // 
             cbAuthor.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbAuthor.FormattingEnabled = true;
-            cbAuthor.Location = new Point(173, 95);
+            cbAuthor.Location = new Point(110, 106);
             cbAuthor.Name = "cbAuthor";
             cbAuthor.Size = new Size(200, 33);
             cbAuthor.TabIndex = 2;
@@ -151,7 +167,7 @@
             groupBox1.Controls.Add(rbNISAN);
             groupBox1.Controls.Add(rbTOYOTA);
             groupBox1.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            groupBox1.Location = new Point(164, 150);
+            groupBox1.Location = new Point(101, 161);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(374, 50);
             groupBox1.TabIndex = 3;
@@ -233,14 +249,14 @@
             // 
             cbCarName.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbCarName.FormattingEnabled = true;
-            cbCarName.Location = new Point(173, 223);
+            cbCarName.Location = new Point(110, 234);
             cbCarName.Name = "cbCarName";
             cbCarName.Size = new Size(200, 33);
             cbCarName.TabIndex = 2;
             // 
             // tbReport
             // 
-            tbReport.Location = new Point(173, 286);
+            tbReport.Location = new Point(110, 297);
             tbReport.Multiline = true;
             tbReport.Name = "tbReport";
             tbReport.Size = new Size(319, 77);
@@ -251,7 +267,7 @@
             dgvRecord.AllowUserToAddRows = false;
             dgvRecord.AllowUserToDeleteRows = false;
             dgvRecord.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRecord.Location = new Point(184, 394);
+            dgvRecord.Location = new Point(121, 405);
             dgvRecord.Name = "dgvRecord";
             dgvRecord.ReadOnly = true;
             dgvRecord.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -262,7 +278,7 @@
             // pbPicture
             // 
             pbPicture.BorderStyle = BorderStyle.FixedSingle;
-            pbPicture.Location = new Point(621, 64);
+            pbPicture.Location = new Point(558, 75);
             pbPicture.Name = "pbPicture";
             pbPicture.Size = new Size(294, 247);
             pbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -272,7 +288,7 @@
             // btPicOpen
             // 
             btPicOpen.FlatStyle = FlatStyle.Flat;
-            btPicOpen.Location = new Point(759, 37);
+            btPicOpen.Location = new Point(696, 48);
             btPicOpen.Name = "btPicOpen";
             btPicOpen.Size = new Size(75, 23);
             btPicOpen.TabIndex = 7;
@@ -283,7 +299,7 @@
             // btPicDelete
             // 
             btPicDelete.FlatStyle = FlatStyle.Flat;
-            btPicDelete.Location = new Point(840, 37);
+            btPicDelete.Location = new Point(777, 48);
             btPicDelete.Name = "btPicDelete";
             btPicDelete.Size = new Size(75, 23);
             btPicDelete.TabIndex = 8;
@@ -295,7 +311,7 @@
             // 
             btRecordAdd.FlatStyle = FlatStyle.Flat;
             btRecordAdd.Font = new Font("Yu Gothic UI", 15.75F);
-            btRecordAdd.Location = new Point(621, 326);
+            btRecordAdd.Location = new Point(558, 337);
             btRecordAdd.Name = "btRecordAdd";
             btRecordAdd.Size = new Size(88, 51);
             btRecordAdd.TabIndex = 7;
@@ -307,7 +323,7 @@
             // 
             btRecordModify.FlatStyle = FlatStyle.Flat;
             btRecordModify.Font = new Font("Yu Gothic UI", 15.75F);
-            btRecordModify.Location = new Point(724, 326);
+            btRecordModify.Location = new Point(661, 337);
             btRecordModify.Name = "btRecordModify";
             btRecordModify.Size = new Size(88, 51);
             btRecordModify.TabIndex = 7;
@@ -319,7 +335,7 @@
             // 
             btRecordDelete.FlatStyle = FlatStyle.Flat;
             btRecordDelete.Font = new Font("Yu Gothic UI", 15.75F);
-            btRecordDelete.Location = new Point(827, 326);
+            btRecordDelete.Location = new Point(764, 337);
             btRecordDelete.Name = "btRecordDelete";
             btRecordDelete.Size = new Size(88, 51);
             btRecordDelete.TabIndex = 7;
@@ -333,7 +349,7 @@
             // 
             // btNewRecord
             // 
-            btNewRecord.Location = new Point(396, 26);
+            btNewRecord.Location = new Point(333, 37);
             btNewRecord.Name = "btNewRecord";
             btNewRecord.Size = new Size(96, 34);
             btNewRecord.TabIndex = 9;
@@ -341,11 +357,95 @@
             btNewRecord.UseVisualStyleBackColor = true;
             btNewRecord.Click += btNewRecord_Click;
             // 
+            // ssMessageArea
+            // 
+            ssMessageArea.Items.AddRange(new ToolStripItem[] { tsslbMessage });
+            ssMessageArea.Location = new Point(0, 612);
+            ssMessageArea.Name = "ssMessageArea";
+            ssMessageArea.Size = new Size(886, 22);
+            ssMessageArea.TabIndex = 10;
+            ssMessageArea.Text = "statusStrip1";
+            // 
+            // tsslbMessage
+            // 
+            tsslbMessage.Name = "tsslbMessage";
+            tsslbMessage.Size = new Size(0, 17);
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルFToolStripMenuItem, ヘルプHToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(886, 24);
+            menuStrip1.TabIndex = 11;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // ファイルFToolStripMenuItem
+            // 
+            ファイルFToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 開くToolStripMenuItem, 保存ToolStripMenuItem, toolStripSeparator1, 色設定ToolStripMenuItem, tsmiExit });
+            ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
+            ファイルFToolStripMenuItem.Size = new Size(67, 20);
+            ファイルFToolStripMenuItem.Text = "ファイル(&F)";
+            // 
+            // 開くToolStripMenuItem
+            // 
+            開くToolStripMenuItem.Name = "開くToolStripMenuItem";
+            開くToolStripMenuItem.Size = new Size(180, 22);
+            開くToolStripMenuItem.Text = "開く...";
+            開くToolStripMenuItem.Click += 開くToolStripMenuItem_Click;
+            // 
+            // 保存ToolStripMenuItem
+            // 
+            保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
+            保存ToolStripMenuItem.Size = new Size(180, 22);
+            保存ToolStripMenuItem.Text = "保存...";
+            保存ToolStripMenuItem.Click += 保存ToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(177, 6);
+            // 
+            // 色設定ToolStripMenuItem
+            // 
+            色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
+            色設定ToolStripMenuItem.Size = new Size(180, 22);
+            色設定ToolStripMenuItem.Text = "色設定...";
+            色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click;
+            // 
+            // tsmiExit
+            // 
+            tsmiExit.Name = "tsmiExit";
+            tsmiExit.ShortcutKeys = Keys.Alt | Keys.F4;
+            tsmiExit.Size = new Size(180, 22);
+            tsmiExit.Text = "終了";
+            tsmiExit.Click += tsmiExit_Click;
+            // 
+            // ヘルプHToolStripMenuItem
+            // 
+            ヘルプHToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tsmiAbout });
+            ヘルプHToolStripMenuItem.Name = "ヘルプHToolStripMenuItem";
+            ヘルプHToolStripMenuItem.Size = new Size(65, 20);
+            ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
+            // 
+            // tsmiAbout
+            // 
+            tsmiAbout.Name = "tsmiAbout";
+            tsmiAbout.Size = new Size(164, 22);
+            tsmiAbout.Text = "このアプリについて...";
+            tsmiAbout.Click += tsmiAbout_Click;
+            // 
+            // ofdReportfileopen
+            // 
+            ofdReportfileopen.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1128, 653);
+            ClientSize = new Size(886, 634);
+            Controls.Add(ssMessageArea);
+            Controls.Add(menuStrip1);
             Controls.Add(btNewRecord);
             Controls.Add(btPicDelete);
             Controls.Add(btRecordDelete);
@@ -366,12 +466,18 @@
             Controls.Add(label2);
             Controls.Add(label7);
             Controls.Add(label1);
+            MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "cvnfhmfc";
+            Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecord).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbPicture).EndInit();
+            ssMessageArea.ResumeLayout(false);
+            ssMessageArea.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -405,5 +511,19 @@
         private Button btRecordDelete;
         private OpenFileDialog ofdPicFileOpen;
         private Button btNewRecord;
+        private StatusStrip ssMessageArea;
+        private ToolStripStatusLabel tsslbMessage;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem ファイルFToolStripMenuItem;
+        private ToolStripMenuItem ヘルプHToolStripMenuItem;
+        private ToolStripMenuItem tsmiAbout;
+        private ToolStripMenuItem 開くToolStripMenuItem;
+        private ToolStripMenuItem 保存ToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem 色設定ToolStripMenuItem;
+        private ToolStripMenuItem tsmiExit;
+        private ColorDialog cdColor;
+        private OpenFileDialog ofdReportfileopen;
+        private SaveFileDialog sfdReportFileSave;
     }
 }
