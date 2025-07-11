@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 
@@ -168,11 +169,29 @@ namespace CarReportSystem {
 
             //設定ファイルを読み込み背景色を設定する(逆シリアル化)
             //P284以降を参考にする(ファイル名:setting.xml)
-            var serializer = new XmlSerializer(typeof(Settings));
-            if (File.Exists("settings.xml")) {
-                using (var reader = new StreamReader("settings.xml")) {
-                    settings = (Settings)serializer.Deserialize(reader);
-                    BackColor = Color.FromArgb(settings.MainFormBackColor);
+
+            //var serializer = new XmlSerializer(typeof(Settings));
+            //if (File.Exists("settings.xml")) {
+            //    using (var reader = new StreamReader("settings.xml")) {
+            //        settings = (Settings)serializer.Deserialize(reader);
+            //        BackColor = Color.FromArgb(settings.MainFormBackColor);
+            //    }
+            //}
+            if (File.Exists("setting.xml")) {
+                try {
+                    using (var reader = XmlReader.Create("setting.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var set = serializer.Deserialize(reader) as Settings;
+                        //背景色設定
+                        BackColor = Color.FromArgb(set.MainFormBackColor);
+                        //設定クラスのインスタンスにも現在の設定色を設定
+                        //settings.MainFormBackColor = BackColor.ToArgb();
+                        settings = set;
+                    }
+                }
+                catch (Exception ex) {
+                    tsslbMessage.Text = "ファイル読み込みエラー";
+                    MessageBox.Show(ex.Message);//より具体的なエラーを出力
                 }
             }
          }
@@ -256,12 +275,24 @@ namespace CarReportSystem {
 
         //フォームが閉じたら呼ばれる
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
-            //設定ファイルへ色情報を保存する処理（シリアル化)
-            using (var writer = new StreamWriter("settings.xml")) {
-                var serializer = new XmlSerializer(typeof(Settings));
-                serializer.Serialize(writer, settings);
-            }
 
+
+            //設定ファイルへ色情報を保存する処理（シリアル化)
+
+            //using (var writer = new StreamWriter("settings.xml")) {
+            //    var serializer = new XmlSerializer(typeof(Settings));
+            //    serializer.Serialize(writer, settings);
+            try {
+                using (var writer = XmlWriter.Create("setting.xml")) {
+                    var serializer = new XmlSerializer(settings.GetType());
+                    serializer.Serialize(writer, settings);
+                }
+            }
+            catch (Exception ex) {
+                tsslbMessage.Text = "ファイル書き出しエラー";
+                MessageBox.Show(ex.Message);
+
+            }
         }
     }
 }
