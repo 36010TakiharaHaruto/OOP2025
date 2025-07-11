@@ -11,7 +11,8 @@ namespace CarReportSystem {
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
         //設定クラスのインスタンスを生成
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
+
 
 
         public Form1() {
@@ -48,7 +49,7 @@ namespace CarReportSystem {
         }
 
 
-
+         
         private void btRecordAdd_Click(object sender, EventArgs e) {
             if (cbAuthor.Text == string.Empty || cbCarName.Text == string.Empty) {
                 tsslbMessage.Text = "記録者、または車名が未入力です";
