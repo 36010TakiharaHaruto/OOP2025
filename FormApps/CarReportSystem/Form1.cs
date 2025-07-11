@@ -1,12 +1,17 @@
 using System.ComponentModel;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
+
+        //設定クラスのインスタンスを生成
+        Settings settings = new Settings();
+
 
         public Form1() {
             InitializeComponent();
@@ -158,8 +163,19 @@ namespace CarReportSystem {
             InputItemsAllClear();
 
             //交互に色を設定（データグリッドビュー）
+            dgvRecord.DefaultCellStyle.BackColor = Color.LightBlue;
             dgvRecord.AlternatingRowsDefaultCellStyle.BackColor = Color.Pink;
-        }
+
+            //設定ファイルを読み込み背景色を設定する(逆シリアル化)
+            //P284以降を参考にする(ファイル名:setting.xml)
+            var serializer = new XmlSerializer(typeof(Settings));
+            if (File.Exists("settings.xml")) {
+                using (var reader = new StreamReader("settings.xml")) {
+                    settings = (Settings)serializer.Deserialize(reader);
+                    BackColor = Color.FromArgb(settings.MainFormBackColor);
+                }
+            }
+         }
 
         private void tsmiExit_Click(object sender, EventArgs e) {
             Application.Exit();
@@ -173,12 +189,16 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if (cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
+                //設定ファイルへ保存
+                settings.MainFormBackColor = cdColor.Color.ToArgb();//背景色を設定
+
+
             }
         }
 
         //ファイルオープン処理
         private void reportOpenFile() {
-            if(ofdReportfileopen.ShowDialog() == DialogResult.OK) {
+            if (ofdReportfileopen.ShowDialog() == DialogResult.OK) {
                 try {
                     //逆シリアル化でバイナリ形式を取り込む
 #pragma warning disable SYSLIB0011 // 型またはメンバーが旧型式です
@@ -227,11 +247,21 @@ namespace CarReportSystem {
         }
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
-            reportSaveFile();
+            reportSaveFile();//ファイルセーブ処理
         }
 
         private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
-            reportOpenFile();
+            reportOpenFile();//ファイルオープン処理
+        }
+
+        //フォームが閉じたら呼ばれる
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルへ色情報を保存する処理（シリアル化)
+            using (var writer = new StreamWriter("settings.xml")) {
+                var serializer = new XmlSerializer(typeof(Settings));
+                serializer.Serialize(writer, settings);
+            }
+
         }
     }
 }
