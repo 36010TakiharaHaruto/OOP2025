@@ -73,9 +73,12 @@ namespace Exercise01 {
         static Employee[] Deserialize_f(string filePath) {
             var options = new JsonSerializerOptions {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                WriteIndented = true
             };
-            string json = File.ReadAllText(filePath);
-            return JsonSerializer.Deserialize<Employee[]>(json, options) ;
+            var text = File.ReadAllText(filePath);
+            var employees = JsonSerializer.Deserialize<Employee[]>(text, options);
+            return employees ?? [];
         }
 
 
