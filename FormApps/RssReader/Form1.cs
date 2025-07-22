@@ -1,4 +1,5 @@
 using System.Net;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -16,6 +17,12 @@ namespace RssReader {
             cbUrl.Items.Add(new KeyValuePair<string, string>("国内", "https://news.yahoo.co.jp/rss/categories/domestic.xml"));
             cbUrl.Items.Add(new KeyValuePair<string, string>("国際", "https://news.yahoo.co.jp/rss/categories/world.xml"));
             cbUrl.Items.Add(new KeyValuePair<string, string>("経済", "https://news.yahoo.co.jp/rss/categories/business.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("エンタメ", "https://news.yahoo.co.jp/rss/categories/entertainment.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("スポーツ", "https://news.yahoo.co.jp/rss/categories/sports.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("IT", "https://news.yahoo.co.jp/rss/categories/it.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("科学", "https://news.yahoo.co.jp/rss/categories/science.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("ライフ", "https://news.yahoo.co.jp/rss/categories/life.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("地域", "https://news.yahoo.co.jp/rss/categories/local.xml"));
 
             cbUrl.SelectedIndex = 0;
             if (cbUrl.Items.Count > 0) {
@@ -85,20 +92,26 @@ namespace RssReader {
             btMove.Enabled = wvRssLink.CanGoForward;
         }
 
-        // お気に入り登録
         private void btRegistration_Click(object sender, EventArgs e) {
-            string url = tbFavorite.Text.Trim();
-            if (string.IsNullOrEmpty(url)) {
-                MessageBox.Show("登録するURLを入力してください。");
+            string name = tbFavorite.Text.Trim();
+            string url = cbUrl.Text.Trim(); 
+
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(url)) {
+                MessageBox.Show("名称とURLの両方を入力してください。");
+                return;
+            }
+            bool exists = cbUrl.Items
+                .OfType<KeyValuePair<string, string>>()
+                .Any(kv => kv.Value == url);
+
+            if (exists) {
+                MessageBox.Show("このURLはすでに登録されています。");
                 return;
             }
 
-            if (!cbUrl.Items.Contains(url)) {
-                cbUrl.Items.Add(url);
-                MessageBox.Show("お気に入りに登録しました。");
-            } else {
-                MessageBox.Show("すでに登録されています。");
-            }
+            // キー(名称)と値(URL)のペアで登録
+            cbUrl.Items.Add(new KeyValuePair<string, string>(name, url));
+            MessageBox.Show("お気に入りに登録しました。");
         }
 
         //お気に入り削除

@@ -39,7 +39,7 @@
             // btRssGet
             // 
             btRssGet.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            btRssGet.Location = new Point(735, 12);
+            btRssGet.Location = new Point(780, 15);
             btRssGet.Name = "btRssGet";
             btRssGet.Size = new Size(76, 35);
             btRssGet.TabIndex = 1;
@@ -55,7 +55,7 @@
             lbTitles.ItemHeight = 21;
             lbTitles.Location = new Point(12, 116);
             lbTitles.Name = "lbTitles";
-            lbTitles.Size = new Size(990, 256);
+            lbTitles.Size = new Size(1041, 256);
             lbTitles.TabIndex = 2;
             lbTitles.Click += lbTitles_Click;
             // 
@@ -66,7 +66,7 @@
             wvRssLink.DefaultBackgroundColor = Color.White;
             wvRssLink.Location = new Point(12, 378);
             wvRssLink.Name = "wvRssLink";
-            wvRssLink.Size = new Size(990, 259);
+            wvRssLink.Size = new Size(1041, 525);
             wvRssLink.TabIndex = 3;
             wvRssLink.ZoomFactor = 1D;
             // 
@@ -93,14 +93,14 @@
             // tbFavorite
             // 
             tbFavorite.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbFavorite.Location = new Point(127, 65);
+            tbFavorite.Location = new Point(155, 65);
             tbFavorite.Name = "tbFavorite";
             tbFavorite.Size = new Size(457, 35);
             tbFavorite.TabIndex = 6;
             // 
             // btRegistration
             // 
-            btRegistration.Location = new Point(599, 65);
+            btRegistration.Location = new Point(643, 65);
             btRegistration.Name = "btRegistration";
             btRegistration.Size = new Size(86, 35);
             btRegistration.TabIndex = 7;
@@ -110,7 +110,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(39, 80);
+            label1.Location = new Point(42, 75);
             label1.Name = "label1";
             label1.Size = new Size(82, 15);
             label1.TabIndex = 8;
@@ -119,14 +119,14 @@
             // cbUrl
             // 
             cbUrl.FormattingEnabled = true;
-            cbUrl.Location = new Point(291, 15);
+            cbUrl.Location = new Point(249, 22);
             cbUrl.Name = "cbUrl";
-            cbUrl.Size = new Size(431, 23);
+            cbUrl.Size = new Size(480, 23);
             cbUrl.TabIndex = 9;
             // 
             // btDelete
             // 
-            btDelete.Location = new Point(706, 65);
+            btDelete.Location = new Point(770, 60);
             btDelete.Name = "btDelete";
             btDelete.Size = new Size(86, 35);
             btDelete.TabIndex = 11;
@@ -137,7 +137,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1065, 763);
+            ClientSize = new Size(1065, 915);
             Controls.Add(btDelete);
             Controls.Add(cbUrl);
             Controls.Add(label1);
