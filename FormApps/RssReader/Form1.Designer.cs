@@ -72,7 +72,7 @@
             // 
             // btMove
             // 
-            btMove.Location = new Point(126, 14);
+            btMove.Location = new Point(127, 18);
             btMove.Name = "btMove";
             btMove.Size = new Size(86, 36);
             btMove.TabIndex = 4;
@@ -82,7 +82,7 @@
             // 
             // btReturn
             // 
-            btReturn.Location = new Point(12, 15);
+            btReturn.Location = new Point(12, 21);
             btReturn.Name = "btReturn";
             btReturn.Size = new Size(90, 35);
             btReturn.TabIndex = 5;
@@ -110,23 +110,25 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(42, 75);
+            label1.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label1.Location = new Point(34, 71);
             label1.Name = "label1";
-            label1.Size = new Size(82, 15);
+            label1.Size = new Size(103, 20);
             label1.TabIndex = 8;
-            label1.Text = "お気に入り登録";
+            label1.Text = "お気に入り名称";
             // 
             // cbUrl
             // 
+            cbUrl.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbUrl.FormattingEnabled = true;
-            cbUrl.Location = new Point(249, 22);
+            cbUrl.Location = new Point(249, 21);
             cbUrl.Name = "cbUrl";
-            cbUrl.Size = new Size(480, 23);
+            cbUrl.Size = new Size(480, 29);
             cbUrl.TabIndex = 9;
             // 
             // btDelete
             // 
-            btDelete.Location = new Point(770, 60);
+            btDelete.Location = new Point(770, 65);
             btDelete.Name = "btDelete";
             btDelete.Size = new Size(86, 35);
             btDelete.TabIndex = 11;

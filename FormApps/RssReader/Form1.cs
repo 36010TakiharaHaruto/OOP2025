@@ -116,17 +116,15 @@ namespace RssReader {
 
         //お気に入り削除
         private void tbDelete_Click(object sender, EventArgs e) {
-            if (cbUrl.SelectedItem == null) {
-                MessageBox.Show("削除するURLを選択してください。");
+            if (cbUrl.SelectedItem is not KeyValuePair<string, string> selected) {
+                MessageBox.Show("削除する項目を選んでください。");
                 return;
             }
 
-            string url = cbUrl.SelectedItem.ToString();
-            if (MessageBox.Show($"「{url}」を削除しますか？", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                cbUrl.Items.Remove(url);
-                if (cbUrl.Items.Count > 0) {
+            if (MessageBox.Show($"「{selected.Key}（{selected.Value}）」を削除しますか？", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                cbUrl.Items.Remove(selected);
+                if (cbUrl.Items.Count > 0)
                     cbUrl.SelectedIndex = 0;
-                }
             }
         }
     }
