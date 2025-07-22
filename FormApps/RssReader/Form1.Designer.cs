@@ -31,8 +31,8 @@
             tbFavorite = new TextBox();
             btRegistration = new Button();
             label1 = new Label();
-            cbUri = new ComboBox();
-            tbUrl = new TextBox();
+            cbUrl = new ComboBox();
+            btDelete = new Button();
             ((System.ComponentModel.ISupportInitialize)wvRssLink).BeginInit();
             SuspendLayout();
             // 
@@ -100,7 +100,7 @@
             // 
             // btRegistration
             // 
-            btRegistration.Location = new Point(621, 65);
+            btRegistration.Location = new Point(599, 65);
             btRegistration.Name = "btRegistration";
             btRegistration.Size = new Size(86, 35);
             btRegistration.TabIndex = 7;
@@ -110,35 +110,36 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(20, 80);
+            label1.Location = new Point(39, 80);
             label1.Name = "label1";
             label1.Size = new Size(82, 15);
             label1.TabIndex = 8;
             label1.Text = "お気に入り登録";
             // 
-            // cbUri
+            // cbUrl
             // 
-            cbUri.FormattingEnabled = true;
-            cbUri.Location = new Point(603, 94);
-            cbUri.Name = "cbUri";
-            cbUri.Size = new Size(431, 23);
-            cbUri.TabIndex = 9;
+            cbUrl.FormattingEnabled = true;
+            cbUrl.Location = new Point(291, 15);
+            cbUrl.Name = "cbUrl";
+            cbUrl.Size = new Size(431, 23);
+            cbUrl.TabIndex = 9;
             // 
-            // tbUrl
+            // btDelete
             // 
-            tbUrl.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbUrl.Location = new Point(272, 12);
-            tbUrl.Name = "tbUrl";
-            tbUrl.Size = new Size(457, 35);
-            tbUrl.TabIndex = 10;
+            btDelete.Location = new Point(706, 65);
+            btDelete.Name = "btDelete";
+            btDelete.Size = new Size(86, 35);
+            btDelete.TabIndex = 11;
+            btDelete.Text = "削除";
+            btDelete.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1065, 763);
-            Controls.Add(tbUrl);
-            Controls.Add(cbUri);
+            Controls.Add(btDelete);
+            Controls.Add(cbUrl);
             Controls.Add(label1);
             Controls.Add(btRegistration);
             Controls.Add(tbFavorite);
@@ -163,7 +164,7 @@
         private TextBox tbFavorite;
         private Button btRegistration;
         private Label label1;
-        private ComboBox cbUri;
-        private TextBox tbUrl;
+        private ComboBox cbUrl;
+        private Button btDelete;
     }
 }

@@ -9,14 +9,29 @@ namespace RssReader {
 
         public Form1() {
             InitializeComponent();
+
+            cbUrl.DisplayMember = "Key";
+            cbUrl.ValueMember = "Value";
+
+            cbUrl.Items.Add(new KeyValuePair<string, string>("国内", "https://news.yahoo.co.jp/rss/categories/domestic.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("国際", "https://news.yahoo.co.jp/rss/categories/world.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("経済", "https://news.yahoo.co.jp/rss/categories/business.xml"));
+
+            cbUrl.SelectedIndex = 0;
+            if (cbUrl.Items.Count > 0) {
+                cbUrl.SelectedIndex = 0;
+            }
+
+            // イベント登録
+            btRegistration.Click += btRegistration_Click;
+            btDelete.Click += tbDelete_Click;
         }
 
         private async void btRssGet_Click_1(object sender, EventArgs e) {
             using (var hc = new HttpClient()) {
-                string xml = await hc.GetStringAsync(tbUrl.Text);
+                var selected = (KeyValuePair<string, string>)cbUrl.SelectedItem;
+                string xml = await hc.GetStringAsync(selected.Value);
                 XDocument xdoc = XDocument.Parse(xml);
-
-
 
                 //var url = hc.OpenRead(tbUrl.Text);
                 //XDocument xdoc = XDocument.Load(url); //RSSの取得
@@ -24,11 +39,9 @@ namespace RssReader {
                 //RSSを解析して必要な要素を取得
                 items = xdoc.Root.Descendants("item")
                     .Select(x => new ItemData {
-                        Title = (string?)x.Element("title")
-                                                ,
-                        Link = (string?)x.Element("link")
+                        Title = (string?)x.Element("title"),
+                        Link = (string?)x.Element("link") 
                     }).ToList();
-
 
                 //リストボックスへタイトルを表示
                 lbTitles.Items.Clear();
@@ -43,7 +56,12 @@ namespace RssReader {
         private void lbTitles_Click(object sender, EventArgs e) {
             //var link = items.ElementAtOrDefault(lbTitles.SelectedIndex)?.Link;
             //wvRssLink.Source = string.IsNullOrEmpty(link) ? wvRssLink.Source : new Uri(link);
-            wvRssLink.Source = new Uri(items[lbTitles.SelectedIndex].Link);
+
+            if (lbTitles.SelectedIndex < 0 || lbTitles.SelectedIndex >= items.Count) return;
+            string link = items[lbTitles.SelectedIndex].Link;
+            if (!string.IsNullOrEmpty(link)) {
+                wvRssLink.Source = new Uri(link);
+            }
         }
 
         //戻る
@@ -53,6 +71,7 @@ namespace RssReader {
                 UpdateNavigationButtons();
             }
         }
+
         //進む
         private void btMove_Click(object sender, EventArgs e) {
             if (wvRssLink.CanGoForward) {
@@ -64,6 +83,38 @@ namespace RssReader {
         private void UpdateNavigationButtons() {
             btReturn.Enabled = wvRssLink.CanGoBack;
             btMove.Enabled = wvRssLink.CanGoForward;
+        }
+
+        // お気に入り登録
+        private void btRegistration_Click(object sender, EventArgs e) {
+            string url = tbFavorite.Text.Trim();
+            if (string.IsNullOrEmpty(url)) {
+                MessageBox.Show("登録するURLを入力してください。");
+                return;
+            }
+
+            if (!cbUrl.Items.Contains(url)) {
+                cbUrl.Items.Add(url);
+                MessageBox.Show("お気に入りに登録しました。");
+            } else {
+                MessageBox.Show("すでに登録されています。");
+            }
+        }
+
+        //お気に入り削除
+        private void tbDelete_Click(object sender, EventArgs e) {
+            if (cbUrl.SelectedItem == null) {
+                MessageBox.Show("削除するURLを選択してください。");
+                return;
+            }
+
+            string url = cbUrl.SelectedItem.ToString();
+            if (MessageBox.Show($"「{url}」を削除しますか？", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                cbUrl.Items.Remove(url);
+                if (cbUrl.Items.Count > 0) {
+                    cbUrl.SelectedIndex = 0;
+                }
+            }
         }
     }
 }
