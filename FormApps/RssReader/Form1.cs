@@ -41,25 +41,29 @@ namespace RssReader {
 
         //タイトルを検索（クリック）したときに呼ばれるイベントハンドラ
         private void lbTitles_Click(object sender, EventArgs e) {
-            int index = lbTitles.SelectedIndex;
-            if (index >= 0 && index < items.Count) {
-                string? link = items[index].Link;
-                if (!string.IsNullOrEmpty(link)) {
-                    webView21.Source = new Uri(link);
-                }
-            }
+            //var link = items.ElementAtOrDefault(lbTitles.SelectedIndex)?.Link;
+            //wvRssLink.Source = string.IsNullOrEmpty(link) ? wvRssLink.Source : new Uri(link);
+            wvRssLink.Source = new Uri(items[lbTitles.SelectedIndex].Link);
         }
 
+        //戻る
         private void btReturn_Click(object sender, EventArgs e) {
-            if (webView21.CanGoBack) {
-                webView21.GoBack();
+            if (wvRssLink.CanGoBack) {
+                wvRssLink.GoBack();
+                UpdateNavigationButtons();
+            }
+        }
+        //進む
+        private void btMove_Click(object sender, EventArgs e) {
+            if (wvRssLink.CanGoForward) {
+                wvRssLink.GoForward();
+                UpdateNavigationButtons();
             }
         }
 
-        private void btMove_Click(object sender, EventArgs e) {
-            if (webView21.CanGoForward) {
-                webView21.GoForward();
-            }
+        private void UpdateNavigationButtons() {
+            btReturn.Enabled = wvRssLink.CanGoBack;
+            btMove.Enabled = wvRssLink.CanGoForward;
         }
     }
 }

@@ -23,27 +23,23 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            tbUrl = new TextBox();
             btRssGet = new Button();
             lbTitles = new ListBox();
-            webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            wvRssLink = new Microsoft.Web.WebView2.WinForms.WebView2();
             btMove = new Button();
             btReturn = new Button();
-            ((System.ComponentModel.ISupportInitialize)webView21).BeginInit();
+            tbFavorite = new TextBox();
+            btRegistration = new Button();
+            label1 = new Label();
+            cbUri = new ComboBox();
+            tbUrl = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)wvRssLink).BeginInit();
             SuspendLayout();
-            // 
-            // tbUrl
-            // 
-            tbUrl.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbUrl.Location = new Point(250, 15);
-            tbUrl.Name = "tbUrl";
-            tbUrl.Size = new Size(457, 35);
-            tbUrl.TabIndex = 0;
             // 
             // btRssGet
             // 
             btRssGet.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            btRssGet.Location = new Point(734, 14);
+            btRssGet.Location = new Point(735, 12);
             btRssGet.Name = "btRssGet";
             btRssGet.Size = new Size(76, 35);
             btRssGet.TabIndex = 1;
@@ -57,22 +53,22 @@
             lbTitles.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lbTitles.FormattingEnabled = true;
             lbTitles.ItemHeight = 21;
-            lbTitles.Location = new Point(12, 63);
+            lbTitles.Location = new Point(12, 116);
             lbTitles.Name = "lbTitles";
             lbTitles.Size = new Size(990, 256);
             lbTitles.TabIndex = 2;
             lbTitles.Click += lbTitles_Click;
             // 
-            // webView21
+            // wvRssLink
             // 
-            webView21.AllowExternalDrop = true;
-            webView21.CreationProperties = null;
-            webView21.DefaultBackgroundColor = Color.White;
-            webView21.Location = new Point(12, 325);
-            webView21.Name = "webView21";
-            webView21.Size = new Size(990, 312);
-            webView21.TabIndex = 3;
-            webView21.ZoomFactor = 1D;
+            wvRssLink.AllowExternalDrop = true;
+            wvRssLink.CreationProperties = null;
+            wvRssLink.DefaultBackgroundColor = Color.White;
+            wvRssLink.Location = new Point(12, 378);
+            wvRssLink.Name = "wvRssLink";
+            wvRssLink.Size = new Size(990, 259);
+            wvRssLink.TabIndex = 3;
+            wvRssLink.ZoomFactor = 1D;
             // 
             // btMove
             // 
@@ -94,31 +90,80 @@
             btReturn.UseVisualStyleBackColor = true;
             btReturn.Click += btReturn_Click;
             // 
+            // tbFavorite
+            // 
+            tbFavorite.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tbFavorite.Location = new Point(127, 65);
+            tbFavorite.Name = "tbFavorite";
+            tbFavorite.Size = new Size(457, 35);
+            tbFavorite.TabIndex = 6;
+            // 
+            // btRegistration
+            // 
+            btRegistration.Location = new Point(621, 65);
+            btRegistration.Name = "btRegistration";
+            btRegistration.Size = new Size(86, 35);
+            btRegistration.TabIndex = 7;
+            btRegistration.Text = "登録";
+            btRegistration.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(20, 80);
+            label1.Name = "label1";
+            label1.Size = new Size(82, 15);
+            label1.TabIndex = 8;
+            label1.Text = "お気に入り登録";
+            // 
+            // cbUri
+            // 
+            cbUri.FormattingEnabled = true;
+            cbUri.Location = new Point(603, 94);
+            cbUri.Name = "cbUri";
+            cbUri.Size = new Size(431, 23);
+            cbUri.TabIndex = 9;
+            // 
+            // tbUrl
+            // 
+            tbUrl.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tbUrl.Location = new Point(272, 12);
+            tbUrl.Name = "tbUrl";
+            tbUrl.Size = new Size(457, 35);
+            tbUrl.TabIndex = 10;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1065, 763);
+            Controls.Add(tbUrl);
+            Controls.Add(cbUri);
+            Controls.Add(label1);
+            Controls.Add(btRegistration);
+            Controls.Add(tbFavorite);
             Controls.Add(btReturn);
             Controls.Add(btMove);
-            Controls.Add(webView21);
+            Controls.Add(wvRssLink);
             Controls.Add(lbTitles);
             Controls.Add(btRssGet);
-            Controls.Add(tbUrl);
             Name = "Form1";
             Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)webView21).EndInit();
+            ((System.ComponentModel.ISupportInitialize)wvRssLink).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private TextBox tbUrl;
         private Button btRssGet;
         private ListBox lbTitles;
-        private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
+        private Microsoft.Web.WebView2.WinForms.WebView2 wvRssLink;
         private Button btMove;
         private Button btReturn;
+        private TextBox tbFavorite;
+        private Button btRegistration;
+        private Label label1;
+        private ComboBox cbUri;
+        private TextBox tbUrl;
     }
 }
