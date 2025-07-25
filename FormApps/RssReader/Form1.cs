@@ -1,45 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+using System.Net;
+using System.Security.Policy;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace RssReader {
     public partial class Form1 : Form {
 
         private List<ItemData> items;
 
-        // お気に入り保存ファイル名
-        private const string FavoritesFile = "favorites.xml";
-
         public Form1() {
+
             InitializeComponent();
+
             DarkThemeStyler.ApplyDarkTheme(this);
 
             cbUrl.DisplayMember = "Key";
             cbUrl.ValueMember = "Value";
 
-            LoadFavorites();
-
-            // 初期登録がなければデフォルトを追加
-            if (cbUrl.Items.Count == 0) {
-                cbUrl.Items.Add(new KeyValuePair<string, string>("国内", "https://news.yahoo.co.jp/rss/categories/domestic.xml"));
-                cbUrl.Items.Add(new KeyValuePair<string, string>("国際", "https://news.yahoo.co.jp/rss/categories/world.xml"));
-                cbUrl.Items.Add(new KeyValuePair<string, string>("経済", "https://news.yahoo.co.jp/rss/categories/business.xml"));
-                cbUrl.Items.Add(new KeyValuePair<string, string>("エンタメ", "https://news.yahoo.co.jp/rss/categories/entertainment.xml"));
-                cbUrl.Items.Add(new KeyValuePair<string, string>("スポーツ", "https://news.yahoo.co.jp/rss/categories/sports.xml"));
-                cbUrl.Items.Add(new KeyValuePair<string, string>("IT", "https://news.yahoo.co.jp/rss/categories/it.xml"));
-                cbUrl.Items.Add(new KeyValuePair<string, string>("科学", "https://news.yahoo.co.jp/rss/categories/science.xml"));
-                cbUrl.Items.Add(new KeyValuePair<string, string>("ライフ", "https://news.yahoo.co.jp/rss/categories/life.xml"));
-                cbUrl.Items.Add(new KeyValuePair<string, string>("地域", "https://news.yahoo.co.jp/rss/categories/local.xml"));
-            }
+            cbUrl.Items.Add(new KeyValuePair<string, string>("国内", "https://news.yahoo.co.jp/rss/categories/domestic.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("国際", "https://news.yahoo.co.jp/rss/categories/world.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("経済", "https://news.yahoo.co.jp/rss/categories/business.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("エンタメ", "https://news.yahoo.co.jp/rss/categories/entertainment.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("スポーツ", "https://news.yahoo.co.jp/rss/categories/sports.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("IT", "https://news.yahoo.co.jp/rss/categories/it.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("科学", "https://news.yahoo.co.jp/rss/categories/science.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("ライフ", "https://news.yahoo.co.jp/rss/categories/life.xml"));
+            cbUrl.Items.Add(new KeyValuePair<string, string>("地域", "https://news.yahoo.co.jp/rss/categories/local.xml"));
 
             //cbUrl.SelectedIndex = 0;
             //if (cbUrl.Items.Count > 0) {
@@ -54,12 +40,8 @@ namespace RssReader {
         }
 
         private async void btRssGet_Click_1(object sender, EventArgs e) {
-            if (cbUrl.SelectedItem is not KeyValuePair<string, string> selected) {
-                MessageBox.Show("RSSカテゴリを選択してください。");
-                return;
-            }
-
             using (var hc = new HttpClient()) {
+                var selected = (KeyValuePair<string, string>)cbUrl.SelectedItem;
                 string xml = await hc.GetStringAsync(selected.Value);
                 XDocument xdoc = XDocument.Parse(xml);
 
@@ -96,12 +78,12 @@ namespace RssReader {
 
         //戻る
         private void btReturn_Click(object sender, EventArgs e) {
-            if (wvRssLink.CanGoBack) wvRssLink.GoBack();
+            wvRssLink.GoBack();
         }
 
         //進む
         private void btMove_Click(object sender, EventArgs e) {
-            if (wvRssLink.CanGoForward) wvRssLink.GoForward();
+            wvRssLink.GoForward();
         }
 
         private void wvRssLink_SourceChanged(object sender, Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs e) {
@@ -109,7 +91,9 @@ namespace RssReader {
             btMove.Enabled = wvRssLink.CanGoForward;
         }
 
-        // お気に入り登録
+        private void btRegistration_Click_1(object sender, EventArgs e) {
+
+        }
         private void btRegistration_Click(object sender, EventArgs e) {
             string name = tbFavorite.Text.Trim();
             string url = cbUrl.Text.Trim();
@@ -118,7 +102,6 @@ namespace RssReader {
                 MessageBox.Show("名称とURLの両方を入力してください。");
                 return;
             }
-
             bool exists = cbUrl.Items
                 .OfType<KeyValuePair<string, string>>()
                 .Any(kv => kv.Value == url);
@@ -128,12 +111,12 @@ namespace RssReader {
                 return;
             }
 
+            // キー(名称)と値(URL)のペアで登録
             cbUrl.Items.Add(new KeyValuePair<string, string>(name, url));
-            SaveFavorites();
             MessageBox.Show("お気に入りに登録しました。");
         }
 
-        // お気に入り削除
+        //お気に入り削除
         private void tbDelete_Click(object sender, EventArgs e) {
             if (cbUrl.SelectedItem is not KeyValuePair<string, string> selected) {
                 MessageBox.Show("削除する項目を選んでください。");
@@ -142,57 +125,11 @@ namespace RssReader {
 
             if (MessageBox.Show($"「{selected.Key}（{selected.Value}）」を削除しますか？", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes) {
                 cbUrl.Items.Remove(selected);
-                SaveFavorites();
-
                 if (cbUrl.Items.Count > 0)
                     cbUrl.SelectedIndex = 0;
-                else
-                    cbUrl.SelectedIndex = -1;
             }
         }
 
-        // お気に入り保存用のクラス
-        public class FavoriteItem {
-            public string Name { get; set; }
-            public string Url { get; set; }
-        }
 
-        // お気に入りをXMLファイルに保存
-        private void SaveFavorites() {
-            try {
-                var list = cbUrl.Items
-                    .OfType<KeyValuePair<string, string>>()
-                    .Select(kv => new FavoriteItem { Name = kv.Key, Url = kv.Value })
-                    .ToList();
-
-                var serializer = new XmlSerializer(typeof(List<FavoriteItem>));
-                using (var writer = new StreamWriter(FavoritesFile, false, Encoding.UTF8)) {
-                    serializer.Serialize(writer, list);
-                }
-            }
-            catch (Exception ex) {
-                MessageBox.Show("お気に入り保存エラー: " + ex.Message);
-            }
-        }
-
-        // お気に入りをXMLファイルから読み込み
-        private void LoadFavorites() {
-            if (!File.Exists(FavoritesFile)) return;
-
-            try {
-                var serializer = new XmlSerializer(typeof(List<FavoriteItem>));
-                using (var reader = new StreamReader(FavoritesFile, Encoding.UTF8)) {
-                    var list = (List<FavoriteItem>)serializer.Deserialize(reader);
-                    cbUrl.Items.Clear();
-                    foreach (var item in list) {
-                        cbUrl.Items.Add(new KeyValuePair<string, string>(item.Name, item.Url));
-                    }
-                }
-                if (cbUrl.Items.Count > 0) cbUrl.SelectedIndex = 0;
-            }
-            catch (Exception ex) {
-                MessageBox.Show("お気に入り読み込みエラー: " + ex.Message);
-            }
-        }
     }
 }

@@ -117,6 +117,7 @@
             btRegistration.TabIndex = 7;
             btRegistration.Text = "登録";
             btRegistration.UseVisualStyleBackColor = false;
+            btRegistration.Click += btRegistration_Click_1;
             // 
             // label1
             // 
