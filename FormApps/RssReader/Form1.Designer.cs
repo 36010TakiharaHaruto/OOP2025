@@ -69,6 +69,7 @@
             wvRssLink.Size = new Size(1041, 525);
             wvRssLink.TabIndex = 3;
             wvRssLink.ZoomFactor = 1D;
+            wvRssLink.SourceChanged += wvRssLink_SourceChanged;
             // 
             // btMove
             // 

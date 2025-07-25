@@ -47,7 +47,7 @@ namespace RssReader {
                 items = xdoc.Root.Descendants("item")
                     .Select(x => new ItemData {
                         Title = (string?)x.Element("title"),
-                        Link = (string?)x.Element("link") 
+                        Link = (string?)x.Element("link")
                     }).ToList();
 
                 //リストボックスへタイトルを表示
@@ -73,28 +73,22 @@ namespace RssReader {
 
         //戻る
         private void btReturn_Click(object sender, EventArgs e) {
-            if (wvRssLink.CanGoBack) {
-                wvRssLink.GoBack();
-                UpdateNavigationButtons();
-            }
+            wvRssLink.GoBack();
         }
 
         //進む
         private void btMove_Click(object sender, EventArgs e) {
-            if (wvRssLink.CanGoForward) {
-                wvRssLink.GoForward();
-                UpdateNavigationButtons();
-            }
+            wvRssLink.GoForward();
         }
 
-        private void UpdateNavigationButtons() {
+        private void wvRssLink_SourceChanged(object sender, Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs e) {
             btReturn.Enabled = wvRssLink.CanGoBack;
             btMove.Enabled = wvRssLink.CanGoForward;
         }
 
         private void btRegistration_Click(object sender, EventArgs e) {
             string name = tbFavorite.Text.Trim();
-            string url = cbUrl.Text.Trim(); 
+            string url = cbUrl.Text.Trim();
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(url)) {
                 MessageBox.Show("名称とURLの両方を入力してください。");
@@ -127,5 +121,7 @@ namespace RssReader {
                     cbUrl.SelectedIndex = 0;
             }
         }
+
+  
     }
 }
