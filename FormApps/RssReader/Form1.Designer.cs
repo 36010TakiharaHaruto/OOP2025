@@ -38,18 +38,20 @@
             // 
             // btRssGet
             // 
+            btRssGet.BackColor = Color.White;
             btRssGet.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            btRssGet.Location = new Point(780, 15);
+            btRssGet.Location = new Point(770, 24);
             btRssGet.Name = "btRssGet";
             btRssGet.Size = new Size(76, 35);
             btRssGet.TabIndex = 1;
             btRssGet.Text = "取得";
-            btRssGet.UseVisualStyleBackColor = true;
+            btRssGet.UseVisualStyleBackColor = false;
             btRssGet.Click += btRssGet_Click_1;
             // 
             // lbTitles
             // 
             lbTitles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lbTitles.BackColor = Color.White;
             lbTitles.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
             lbTitles.FormattingEnabled = true;
             lbTitles.ItemHeight = 21;
@@ -62,6 +64,7 @@
             // wvRssLink
             // 
             wvRssLink.AllowExternalDrop = true;
+            wvRssLink.BackColor = Color.White;
             wvRssLink.CreationProperties = null;
             wvRssLink.DefaultBackgroundColor = Color.White;
             wvRssLink.Location = new Point(12, 378);
@@ -73,46 +76,50 @@
             // 
             // btMove
             // 
-            btMove.Location = new Point(127, 18);
+            btMove.BackColor = Color.White;
+            btMove.Location = new Point(130, 21);
             btMove.Name = "btMove";
-            btMove.Size = new Size(86, 36);
+            btMove.Size = new Size(88, 36);
             btMove.TabIndex = 4;
             btMove.Text = "進む";
-            btMove.UseVisualStyleBackColor = true;
+            btMove.UseVisualStyleBackColor = false;
             btMove.Click += btMove_Click;
             // 
             // btReturn
             // 
+            btReturn.BackColor = Color.White;
             btReturn.Location = new Point(12, 21);
             btReturn.Name = "btReturn";
-            btReturn.Size = new Size(90, 35);
+            btReturn.Size = new Size(92, 35);
             btReturn.TabIndex = 5;
             btReturn.Text = "戻る";
-            btReturn.UseVisualStyleBackColor = true;
+            btReturn.UseVisualStyleBackColor = false;
             btReturn.Click += btReturn_Click;
             // 
             // tbFavorite
             // 
+            tbFavorite.BackColor = Color.White;
             tbFavorite.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbFavorite.Location = new Point(155, 65);
+            tbFavorite.Location = new Point(156, 65);
             tbFavorite.Name = "tbFavorite";
             tbFavorite.Size = new Size(457, 35);
             tbFavorite.TabIndex = 6;
             // 
             // btRegistration
             // 
+            btRegistration.BackColor = Color.White;
             btRegistration.Location = new Point(643, 65);
             btRegistration.Name = "btRegistration";
             btRegistration.Size = new Size(86, 35);
             btRegistration.TabIndex = 7;
             btRegistration.Text = "登録";
-            btRegistration.UseVisualStyleBackColor = true;
+            btRegistration.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label1.Location = new Point(34, 71);
+            label1.Location = new Point(12, 71);
             label1.Name = "label1";
             label1.Size = new Size(103, 20);
             label1.TabIndex = 8;
@@ -120,26 +127,29 @@
             // 
             // cbUrl
             // 
+            cbUrl.BackColor = Color.White;
             cbUrl.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
             cbUrl.FormattingEnabled = true;
-            cbUrl.Location = new Point(249, 21);
+            cbUrl.Location = new Point(249, 24);
             cbUrl.Name = "cbUrl";
             cbUrl.Size = new Size(480, 29);
             cbUrl.TabIndex = 9;
             // 
             // btDelete
             // 
-            btDelete.Location = new Point(770, 65);
+            btDelete.BackColor = Color.White;
+            btDelete.Location = new Point(760, 65);
             btDelete.Name = "btDelete";
             btDelete.Size = new Size(86, 35);
             btDelete.TabIndex = 11;
             btDelete.Text = "削除";
-            btDelete.UseVisualStyleBackColor = true;
+            btDelete.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(1065, 915);
             Controls.Add(btDelete);
             Controls.Add(cbUrl);
@@ -152,7 +162,7 @@
             Controls.Add(lbTitles);
             Controls.Add(btRssGet);
             Name = "Form1";
-            Text = "Form1";
+            Text = "RSSリーダー";
             ((System.ComponentModel.ISupportInitialize)wvRssLink).EndInit();
             ResumeLayout(false);
             PerformLayout();

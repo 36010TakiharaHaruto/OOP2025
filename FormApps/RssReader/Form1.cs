@@ -29,6 +29,8 @@ namespace RssReader {
                 cbUrl.SelectedIndex = 0;
             }
 
+            cbUrl.SelectedIndex = -1;
+
             // ƒCƒxƒ“ƒg“o˜^
             btRegistration.Click += btRegistration_Click;
             btDelete.Click += tbDelete_Click;
