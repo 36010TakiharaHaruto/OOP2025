@@ -39,10 +39,10 @@
             // btRssGet
             // 
             btRssGet.BackColor = Color.White;
-            btRssGet.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            btRssGet.Location = new Point(770, 24);
+            btRssGet.Font = new Font("ＭＳ Ｐ明朝", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btRssGet.Location = new Point(760, 24);
             btRssGet.Name = "btRssGet";
-            btRssGet.Size = new Size(76, 35);
+            btRssGet.Size = new Size(86, 35);
             btRssGet.TabIndex = 1;
             btRssGet.Text = "取得";
             btRssGet.UseVisualStyleBackColor = false;
@@ -77,6 +77,7 @@
             // btMove
             // 
             btMove.BackColor = Color.White;
+            btMove.Font = new Font("ＭＳ 明朝", 12F);
             btMove.Location = new Point(130, 21);
             btMove.Name = "btMove";
             btMove.Size = new Size(88, 36);
@@ -88,6 +89,7 @@
             // btReturn
             // 
             btReturn.BackColor = Color.White;
+            btReturn.Font = new Font("ＭＳ 明朝", 12F);
             btReturn.Location = new Point(12, 21);
             btReturn.Name = "btReturn";
             btReturn.Size = new Size(92, 35);
@@ -108,7 +110,8 @@
             // btRegistration
             // 
             btRegistration.BackColor = Color.White;
-            btRegistration.Location = new Point(643, 65);
+            btRegistration.Font = new Font("ＭＳ 明朝", 12F);
+            btRegistration.Location = new Point(643, 64);
             btRegistration.Name = "btRegistration";
             btRegistration.Size = new Size(86, 35);
             btRegistration.TabIndex = 7;
@@ -138,6 +141,7 @@
             // btDelete
             // 
             btDelete.BackColor = Color.White;
+            btDelete.Font = new Font("ＭＳ 明朝", 12F);
             btDelete.Location = new Point(760, 65);
             btDelete.Name = "btDelete";
             btDelete.Size = new Size(86, 35);
