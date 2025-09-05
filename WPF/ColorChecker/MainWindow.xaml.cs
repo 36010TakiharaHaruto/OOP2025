@@ -20,9 +20,13 @@ namespace ColorChecker
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         public MainWindow()
         {
             InitializeComponent();
+
+
 
             // スライダーの値が変わった時にイベントを登録
             // ValueChanged →　スライダーの「値が変わったとき」に発生するイベント
@@ -63,6 +67,15 @@ namespace ColorChecker
 
             // ListBox に追加
             stockList.Items.Add(color);
+        }
+
+
+
+        //入力中
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+            var color = mycolor.Color;
+            var name = mycolor.Name;
         }
     }
 }

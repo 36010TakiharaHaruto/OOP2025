@@ -55,9 +55,26 @@
                      Text="{Binding ElementName=bSlider, Path=Value , 
                      UpdateSourceTrigger=PropertyChanged , StringFormat={}{0:0}}"/>
 
-            <ComboBox x:Name="colorSelectComboBox" Grid.Row="3" Grid.Column ="1"
+            <!--<ComboBox x:Name="colorSelectComboBox" Grid.Row="3" Grid.Column ="1"
                       VerticalAlignment="Center" FontSize="20" >
+            </ComboBox>-->
+            
+            <!--入力中-->
+            <ComboBox x:Name="colorSelectComboBox" Grid.Row="3" Grid.Column ="1" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="34,86,0,0" Height="24" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="155">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="Black"  >
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding Color}"/>
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
+
 
         </Grid>
         <Grid Grid.Column="2">
