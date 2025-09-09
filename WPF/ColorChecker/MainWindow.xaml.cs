@@ -1,81 +1,82 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace ColorChecker
-{
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
-    public partial class MainWindow : Window
-    {
+namespace ColorChecker {
+    public partial class MainWindow : Window {
 
+        private List<MyColor> predefinedColors;
 
-        public MainWindow()
-        {
+        public MainWindow() {
             InitializeComponent();
 
+            // Colorsクラスの全ての静的パブリックプロパティを取得
+            predefinedColors = new List<MyColor>();
+            var colorProperties = typeof(Colors).GetProperties(BindingFlags.Static | BindingFlags.Public);
 
+            foreach (var prop in colorProperties) {
+                var color = (Color)prop.GetValue(null);
+                var name = prop.Name;
+                predefinedColors.Add(new MyColor { Name = name, Color = color });
+            }
 
-            // スライダーの値が変わった時にイベントを登録
-            // ValueChanged →　スライダーの「値が変わったとき」に発生するイベント
-            //Slider_ValueChanged →　値が変わったときに呼ばれる関数
-            rSlider.ValueChanged += Slider_ValueChanged;
-            gSlider.ValueChanged += Slider_ValueChanged;
-            bSlider.ValueChanged += Slider_ValueChanged;
+            // ComboBoxに色リストをセット
+            colorSelectComboBox.ItemsSource = predefinedColors;
 
-            // 初期色セット
-            UpdateColor();
+            // 初期選択
+            int blackIndex = predefinedColors.FindIndex(c => c.Name == "Black");
+            colorSelectComboBox.SelectedIndex = blackIndex >= 0 ? blackIndex : 0;
         }
 
+        // スライダーの値が変わった時の処理
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            UpdateColor();
+            UpdateColorArea(); // 背景色を更新
         }
 
+        // ComboBoxで色が選択された時の処理
+        private void ColorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (colorSelectComboBox.SelectedItem is MyColor selected) {
+                UpdateSlidersFromColor(selected.Color); // スライダーを更新
+            }
+        }
 
-        private void UpdateColor() {
+        // ラベルの背景色を更新
+        private void UpdateColorArea() {
             byte r = (byte)rSlider.Value;
             byte g = (byte)gSlider.Value;
             byte b = (byte)bSlider.Value;
 
-            // RGBの色を作成して、colorAreaの背景にセット
-            colorArea.Background = new SolidColorBrush(Color.FromRgb(r, g, b));
+            Color newColor = Color.FromRgb(r, g, b);
+            colorArea.Background = new SolidColorBrush(newColor);
         }
 
+        // スライダーに色のRGB値をセット
+        private void UpdateSlidersFromColor(Color color) {
+            rSlider.Value = color.R;
+            gSlider.Value = color.G;
+            bSlider.Value = color.B;
+        }
 
+        // STOCKボタンの処理
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-            // RGBの値を取得
-            byte r = (byte)rSlider.Value;
-            byte g = (byte)gSlider.Value;
-            byte b = (byte)bSlider.Value;
+            var currentColor = Color.FromRgb(
+                (byte)rSlider.Value,
+                (byte)gSlider.Value,
+                (byte)bSlider.Value);
 
-            // MyColor にまとめる
-            MyColor color = new MyColor {
-                Color = Color.FromRgb(r, g, b),
-              };
+            string name = "Custom";
+            if (colorSelectComboBox.SelectedItem is MyColor selectedColor) {
+                name = selectedColor.Name; // コンボボックスの色名を取得
+            }
 
-            // ListBox に追加
-            stockList.Items.Add(color);
-        }
+            var myColor = new MyColor {
+                Name = name,
+                Color = currentColor
+            };
 
-
-
-        //入力中
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
-            var color = mycolor.Color;
-            var name = mycolor.Name;
+            stockList.Items.Add(myColor);
         }
     }
 }
