@@ -32,14 +32,23 @@ namespace ColorChecker {
 
         // スライダーの値が変わった時の処理
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            UpdateColorArea(); // 背景色を更新
+            //UpdateColorArea(); // 背景色を更新
+            var myColor = new MyColor {
+                Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value),
+                Name = string.Empty};
+            colorArea.Background = new SolidColorBrush(myColor.Color);
         }
 
-        // ComboBoxで色が選択された時の処理
+        // コンボボックスから色を選択
         private void ColorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (colorSelectComboBox.SelectedItem is MyColor selected) {
-                UpdateSlidersFromColor(selected.Color); // スライダーを更新
-            }
+            var comboSelectMyColor = (MyColor)((ComboBox)sender).SelectedItem;
+            setSlideValue(comboSelectMyColor.Color);
+        }
+        //各スライダーの値を設定する
+        private void setSlideValue(Color color) {
+            rSlider.Value = color.R;
+            gSlider.Value = color.G;
+            bSlider.Value = color.B;
         }
 
         // ラベルの背景色を更新
@@ -52,13 +61,6 @@ namespace ColorChecker {
             colorArea.Background = new SolidColorBrush(newColor);
         }
 
-        // スライダーに色のRGB値をセット
-        private void UpdateSlidersFromColor(Color color) {
-            rSlider.Value = color.R;
-            gSlider.Value = color.G;
-            bSlider.Value = color.B;
-        }
-
         // STOCKボタンの処理
         private void stockButton_Click(object sender, RoutedEventArgs e) {
             var currentColor = Color.FromRgb(
@@ -66,9 +68,16 @@ namespace ColorChecker {
                 (byte)gSlider.Value,
                 (byte)bSlider.Value);
 
-            string name = "Custom";
-            if (colorSelectComboBox.SelectedItem is MyColor selectedColor) {
-                name = selectedColor.Name; // コンボボックスの色名を取得
+            string name;
+
+            // コンボボックスの色とスライダーの色が一致するかチェックするヘルパー関数を作ると良いです
+            if (colorSelectComboBox.SelectedItem is MyColor selectedColor &&
+                selectedColor.Color == currentColor) {
+                // コンボボックスの色と同じなら名前を使う
+                name = selectedColor.Name;
+            } else {
+                // スライダーで自由に変えた色なら「Custom」とかにする
+                name = "Custom";
             }
 
             var myColor = new MyColor {
@@ -78,5 +87,14 @@ namespace ColorChecker {
 
             stockList.Items.Add(myColor);
         }
+        private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (stockList.SelectedItem is MyColor selectedColor) {
+                // スライダーに色をセット
+                setSlideValue(selectedColor.Color);
+                // 背景色も更新
+                colorArea.Background = new SolidColorBrush(selectedColor.Color);
+            }
+        }
+
     }
 }
