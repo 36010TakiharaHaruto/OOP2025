@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ColorChecker"
-        mc:Ignorable="d"
+        mc:Ignorable="d" 
         Title="Color Checker" Height="350" Width="700">
 
     <Grid>
@@ -30,18 +30,20 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="R" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <!-- R,G,B スライダー、テキストボックス -->
+            <TextBlock x:Name="rText" Grid.Row="0" Grid.Column="0" Text="R" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Slider x:Name="rSlider" Grid.Row="0" Grid.Column="1" Maximum="255" VerticalAlignment="Center" IsSnapToTickEnabled="True" ValueChanged="Slider_ValueChanged"/>
             <TextBox x:Name="rValue" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" FontSize="20" TextAlignment="Right" 
                      Text="{Binding ElementName=rSlider, Path=Value , UpdateSourceTrigger=PropertyChanged , StringFormat={}{0:0}}"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="G" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="gText" Grid.Row="1" Grid.Column="0" Text="G" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Slider x:Name="gSlider" Grid.Row="1" Grid.Column="1" Maximum="255" VerticalAlignment="Center" IsSnapToTickEnabled="True" ValueChanged="Slider_ValueChanged"/>
             <TextBox x:Name="gValue" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" FontSize="20" TextAlignment="Right" 
                      Text="{Binding ElementName=gSlider, Path=Value , UpdateSourceTrigger=PropertyChanged , StringFormat={}{0:0}}"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="B" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="bText" Grid.Row="2" Grid.Column="0" Text="B" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Slider x:Name="bSlider" Grid.Row="2" Grid.Column="1" Maximum="255" VerticalAlignment="Center" IsSnapToTickEnabled="True" ValueChanged="Slider_ValueChanged"/>
             <TextBox x:Name="bValue" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" FontSize="20" TextAlignment="Right" 
                      Text="{Binding ElementName=bSlider, Path=Value , UpdateSourceTrigger=PropertyChanged , StringFormat={}{0:0}}"/>
+
             <!-- 色選択用ComboBox -->
             <ComboBox x:Name="colorSelectComboBox" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0" Height="30" 
                       SelectionChanged="ColorSelectComboBox_SelectionChanged">
@@ -67,11 +69,13 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-
-
             <Button x:Name="stockButton" Content="STOCK" Grid.Row="0" Height="30" Click="stockButton_Click"/>
-            <ListBox x:Name="stockList" Grid.Row="1" FontSize="16" SelectionChanged="stockList_SelectionChanged"/>
+            <ListBox x:Name="stockList" Grid.Row="1" FontSize="16" SelectionChanged="stockList_SelectionChanged" Margin="0,0,0,70"/>
 
+            <!-- リセットボタンとダークモード切替 -->
+            <Button x:Name="resetButton" Content="リセット" Grid.Row="1"  Height="20" Click="ResetButton_Click" Margin="0,195,0,45"/>
+            <Button x:Name="darkModeButton" Content="ダークモード" Grid.Row="1"  Height="20" Click="DarkModeButton_Click" RenderTransformOrigin="0.200,2.50" Margin="0,220,0,10"/>
         </Grid>
+
     </Grid>
 </Window>
