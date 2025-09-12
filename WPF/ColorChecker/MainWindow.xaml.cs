@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Linq;
+using System;
 
 namespace ColorChecker {
     public partial class MainWindow : Window {
@@ -141,6 +142,13 @@ namespace ColorChecker {
 
             stockList.Items.Add(myColor);
             colorHistory.Add(myColor);  
+        }
+
+        private void RandomColorButton_Click(object sender, RoutedEventArgs e) {
+            Random rnd = new Random();
+            rSlider.Value = rnd.Next(256);
+            gSlider.Value = rnd.Next(256);
+            bSlider.Value = rnd.Next(256);
         }
     }
 }
