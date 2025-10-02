@@ -11,8 +11,8 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition>
-            </RowDefinition>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         
         <TextBlock Text="{Binding GreetingMessage}"/>
