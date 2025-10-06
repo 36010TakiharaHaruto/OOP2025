@@ -24,21 +24,18 @@ namespace PrismObserverSample {
         }
         //コンストラクタ
         public MainWindowViewModel() {
-            SumCommand = new DelegateCommand(ExcuteSum);
+            SumCommand = new DelegateCommand(ExcuteSum, canExcuteSum)
+                .ObservesProperty(() => Input1)
+                .ObservesProperty(() => Input2);
         }
         public DelegateCommand SumCommand { get; }
 
         //足し算の処理
         private void ExcuteSum() {
-            if (!No(Input1) || !No(Input2)) {
-                Result = "数字を入力してください"; 
-                return;
-            }
-            int sum = int.Parse(Input1) + int.Parse(Input2);
-            Result = sum.ToString();
+            Result = (int.Parse(Input1) + int.Parse(Input2)).ToString();
         }
-        private bool No(string text) {
-            return text.All(char.IsDigit);
+        private bool canExcuteSum() {
+            return (int.TryParse(Input1, out _) && int.TryParse(Input2, out _));
         }
     }
 }

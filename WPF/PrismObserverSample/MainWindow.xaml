@@ -23,13 +23,13 @@
         </Grid.RowDefinitions>
         <!--入力１-->
         <TextBox Grid.Row="0" Grid.Column="0" Height="30" Margin="5"
-                 Text="{Binding Input1}"/>
+                 Text="{Binding Input1 ,UpdateSourceTrigger=PropertyChanged}"/>
         <!--＋記号-->
         <TextBlock Grid.Row="0" Grid.Column="1" Height="30" Margin="5"
                    Text="+" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <!--入力２-->
         <TextBox Grid.Row="0" Grid.Column="2" Height="30" Margin="5"
-                 Text="{Binding Input2}"/>
+                 Text="{Binding Input2 ,UpdateSourceTrigger=PropertyChanged}"/>
         <!--＝記号-->
         <TextBlock Grid.Row="0" Grid.Column="3" Height="30" Margin="5"
                    Text="=" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
