@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SampleUnitConverter {
     class ImperialUnit : DistanceUnit{
         private static List<ImperialUnit> units = new List<ImperialUnit> {
-            new ImperialUnit{Name = "im", Coefficient = 1,},
+            new ImperialUnit{Name = "in", Coefficient = 1,},
             new ImperialUnit{Name = "ft", Coefficient = 12,},
             new ImperialUnit{Name = "yd", Coefficient = 12 * 3,},
             new ImperialUnit{Name = "ml", Coefficient = 12 * 3 * 1760,},
