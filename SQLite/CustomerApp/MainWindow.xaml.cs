@@ -70,7 +70,11 @@ namespace CustomerApp {
             _selectedImageBytes = null;
             ReadDatabase();
             PersonListView.ItemsSource = _customers;
+            NameTextBox.Text = string.Empty;
+            PhoneTextBox.Text = string.Empty;
+            AddressTextBox.Text = string.Empty;
         }
+
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e) {
             var selectedCustomer = PersonListView.SelectedItem as Customer;
