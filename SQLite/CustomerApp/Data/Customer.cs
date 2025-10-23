@@ -39,7 +39,6 @@ namespace CustomerApp.Data {
                 image.EndInit();
                 return image;
             }
-
         }
     }
 }

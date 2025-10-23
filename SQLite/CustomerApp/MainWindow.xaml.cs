@@ -6,6 +6,9 @@ using System.Windows;
 using System.Windows.Controls;
 using CustomerApp.Data;
 using Microsoft.Win32;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Text.Json;
 using System.Windows.Media.Imaging;
 
 namespace CustomerApp {
@@ -36,6 +39,9 @@ namespace CustomerApp {
             ReadDatabase();
             PersonListView.ItemsSource = _customers;
         }
+
+       
+
 
         private void ReadDatabase() {
             using var connection = new SQLiteConnection(App.databasePath);
@@ -129,6 +135,43 @@ namespace CustomerApp {
             NameTextBox.Text = selectedCustomer.Name;
             PhoneTextBox.Text = selectedCustomer.Phone;
             AddressTextBox.Text = selectedCustomer.Address;
+        }
+        private async void PostalCodeTextBox_TextChanged(object sender, TextChangedEventArgs e) {
+            string zipcode = PostalCodeTextBox.Text.Trim();
+
+            zipcode = zipcode.Replace("-", "");
+            if (zipcode.Length != 7 || !zipcode.All(char.IsDigit))
+                return;
+
+            await GetAddressFromZipAsync(zipcode);
+        }
+
+        private async Task GetAddressFromZipAsync(string zipcode) {
+            try {
+                using var client = new HttpClient();
+                string url = $"https://zipcloud.ibsnet.co.jp/api/search?zipcode={zipcode}";
+                var response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                string json = await response.Content.ReadAsStringAsync();
+
+                using var doc = JsonDocument.Parse(json);
+                var root = doc.RootElement;
+
+                if (root.TryGetProperty("results", out var results) && results.ValueKind == JsonValueKind.Array && results.GetArrayLength() > 0) {
+                    var result = results[0];
+                    string address1 = result.GetProperty("address1").GetString();
+                    string address2 = result.GetProperty("address2").GetString();
+                    string address3 = result.GetProperty("address3").GetString();
+
+                    AddressTextBox.Text = $"{address1}{address2}{address3}";
+                } else {
+                    AddressTextBox.Text = "住所が見つかりません";
+                }
+            }
+            catch (Exception ex) {
+                AddressTextBox.Text = $"エラー: {ex.Message}";
+            }
         }
     }
 }
