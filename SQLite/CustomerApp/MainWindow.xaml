@@ -5,6 +5,12 @@
         Width="1000"
         Height="600"
         Background="#d3d3d3">
+    
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
 
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
