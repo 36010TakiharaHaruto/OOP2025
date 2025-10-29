@@ -101,6 +101,18 @@ namespace Exercise01 {
 
 
         private static void Exercise1_8() {
+            var groups = Library.Categories
+                .GroupJoin(Library.Books,
+                    c => c.Id,
+                    b => b.CategoryId,
+                    (category, books) => new { Category = category.Name, Books= books, });
+
+            foreach (var group in groups) {
+                Console.WriteLine($"{group.Key}年");
+                foreach (var book in group) {
+                    Console.WriteLine($"    {book.Title}");
+                }
+            }
         }
     }
 }
