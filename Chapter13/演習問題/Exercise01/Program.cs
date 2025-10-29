@@ -82,7 +82,7 @@ namespace Exercise01 {
 
 
         private static void Exercise1_7() {
-            var devBooksByYear = Library.Books
+            var groups = Library.Books
                 .Join(Library.Categories,
                     book => book.CategoryId,
                     category => category.Id,
@@ -91,7 +91,7 @@ namespace Exercise01 {
                 .GroupBy(b => b.PublishedYear)            
                 .OrderBy(g => g.Key);
 
-            foreach (var group in devBooksByYear) {
+            foreach (var group in groups) {
                 Console.WriteLine($"{group.Key}年");
                 foreach (var book in group) {
                     Console.WriteLine($"    {book.Title}");
