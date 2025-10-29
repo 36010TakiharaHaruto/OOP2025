@@ -50,13 +50,55 @@ namespace Exercise01 {
 
 
         private static void Exercise1_5() {
+            var categories2022 = Library.Books
+                .Join(Library.Categories, book => book.CategoryId,category => category.Id,
+                    (book, category) => new { book.PublishedYear, Category = category.Name })
+                .Where(b => b.PublishedYear == 2022)
+                .Select(b => b.Category)
+                .Distinct();
+
+            Console.WriteLine("2022年に発行された書籍のカテゴリ一覧：");
+            foreach (var category in categories2022) {
+                Console.WriteLine(category);
+            }
         }
+
 
         private static void Exercise1_6() {
+            var booksByCategory = Library.Books
+                .Join(Library.Categories,book => book.CategoryId,
+                    category => category.Id,
+                    (book, category) => new { book.Title, Category = category.Name, book.PublishedYear })
+                .GroupBy(b => b.Category)       
+                .OrderBy(g => g.Key);
+
+            foreach (var group in booksByCategory) {
+                Console.WriteLine($" # {group.Key}"); 
+                foreach (var book in group) {
+                    Console.WriteLine($"   {book.Title}");
+                }
+            }
         }
 
+
         private static void Exercise1_7() {
+            var devBooksByYear = Library.Books
+                .Join(Library.Categories,
+                    book => book.CategoryId,
+                    category => category.Id,
+                    (book, category) => new { book.Title, book.PublishedYear, Category = category.Name })
+                .Where(b => b.Category == "Development") 
+                .GroupBy(b => b.PublishedYear)            
+                .OrderBy(g => g.Key);
+
+            foreach (var group in devBooksByYear) {
+                Console.WriteLine($"{group.Key}年");
+                foreach (var book in group) {
+                    Console.WriteLine($"    {book.Title}");
+                }
+            }
         }
+
 
         private static void Exercise1_8() {
         }
