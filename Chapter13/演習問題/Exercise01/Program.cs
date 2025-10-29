@@ -40,7 +40,8 @@ namespace Exercise01 {
 
         private static void Exercise1_4() {
             var bookDesc = Library.Books
-                .OrderByDescending(b => b.Price);
+                .OrderByDescending(b => b.PublishedYear)
+                .ThenByDescending(b => b.Price);
 
             foreach (var item in bookDesc) {
                 Console.WriteLine($"{item.PublishedYear}年 : {item.Price}円　{item.Title}");
