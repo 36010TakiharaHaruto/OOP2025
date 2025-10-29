@@ -22,9 +22,9 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_2() {
-            var price = Library.Books
-                .Max(b => b.Price);
-            Console.WriteLine(price);
+            var book = Library.Books
+                .MaxBy(b => b.Price);
+            Console.WriteLine(book);
         }
 
         private static void Exercise1_3() {
@@ -39,7 +39,14 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4() {
+            var bookDesc = Library.Books
+                .OrderByDescending(b => b.Price);
+
+            foreach (var item in bookDesc) {
+                Console.WriteLine($"{item.PublishedYear}年 : {item.Price}円　{item.Title}");
+            }
         }
+
 
         private static void Exercise1_5() {
         }
