@@ -108,9 +108,9 @@ namespace Exercise01 {
                     (category, books) => new { Category = category.Name, Books= books, });
 
             foreach (var group in groups) {
-                Console.WriteLine($"{group.Key}年");
-                foreach (var book in group) {
-                    Console.WriteLine($"    {book.Title}");
+                Console.WriteLine(group.Category);
+                foreach (var book in group.Books) {
+                    Console.WriteLine($"    {book.Title} ({book.PublishedYear})年");
                 }
             }
         }
