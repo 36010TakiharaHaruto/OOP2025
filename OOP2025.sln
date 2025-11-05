@@ -201,6 +201,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise01", "Chapter14\演
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section04", "Chapter14\Section04\Section04.csproj", "{74979F68-4200-48D4-A974-9677A3F03E61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBrowser", "Chapter14\WebBrowser\WebBrowser.csproj", "{DF49A7AA-F45A-45A6-89DC-FC65294D6E0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -471,6 +473,10 @@ Global
 		{74979F68-4200-48D4-A974-9677A3F03E61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74979F68-4200-48D4-A974-9677A3F03E61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74979F68-4200-48D4-A974-9677A3F03E61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF49A7AA-F45A-45A6-89DC-FC65294D6E0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF49A7AA-F45A-45A6-89DC-FC65294D6E0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF49A7AA-F45A-45A6-89DC-FC65294D6E0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF49A7AA-F45A-45A6-89DC-FC65294D6E0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -556,6 +562,7 @@ Global
 		{6E09C158-0BF7-4A69-8FC3-CD9B76D7593B} = {96063424-134D-493C-9925-D18BFD0774F6}
 		{C5DFA263-BA49-4CA9-A8D9-22A0DB701DD0} = {6E09C158-0BF7-4A69-8FC3-CD9B76D7593B}
 		{74979F68-4200-48D4-A974-9677A3F03E61} = {96063424-134D-493C-9925-D18BFD0774F6}
+		{DF49A7AA-F45A-45A6-89DC-FC65294D6E0E} = {96063424-134D-493C-9925-D18BFD0774F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53533FE7-2C8A-4318-829E-C15E99EA3991}
