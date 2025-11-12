@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "LineCounter": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\infosys\\source\\repos\\OOP2025\\Chapter09\\演習問題\\Exercise03\\Program.cs"
+    }
+  }
+}
