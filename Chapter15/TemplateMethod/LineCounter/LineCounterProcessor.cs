@@ -16,6 +16,6 @@ namespace LineCounter {
                 _count++;
         }
 
-        protected override void Terminate() => Console.WriteLine("{0} 行", _count);
+        protected override void Terminate() => Console.WriteLine("{0} 個", _count);
     }
 }
