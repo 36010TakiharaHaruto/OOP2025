@@ -9,12 +9,12 @@ namespace LineCounter {
                 path = args[0];
             }
             else {
-                Console.Write("検索するファイルのパスを入力してください: ");
+                Console.Write("パスを入力: ");
                 path = Console.ReadLine();
             }
             path = path.Trim().Trim('"');
             if (string.IsNullOrWhiteSpace(path) || !File.Exists(path)) {
-                Console.WriteLine("有効なファイルパスを指定してください。");
+                Console.WriteLine("パスを指定してください");
                 return;
             }
             TextProcessor.Run<LineCounterProcessor>(path);
