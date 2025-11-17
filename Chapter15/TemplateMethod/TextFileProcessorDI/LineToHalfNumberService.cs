@@ -5,19 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TextFileProcessorDI {
-    internal class LineToHalfNumberService :TextFileService{
+    internal class LineToHalfNumberService : TextFileService{
         private int _count;
 
         public void Initialize(string fname) {
-            _count = 0;
         }
 
         public void Execute(string line) {
-            _count++;
+            Console.WriteLine(line.Normalize(NormalizationForm.FormKD));
         }
 
         public void Terminate() {
-            Console.WriteLine($"{_count} 行");
+            Console.WriteLine("変換終了");
         }
     }
 }
