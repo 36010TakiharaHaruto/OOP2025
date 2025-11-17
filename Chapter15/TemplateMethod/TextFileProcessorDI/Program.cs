@@ -1,11 +1,17 @@
-﻿namespace TextFileProcessorDI {
+﻿using System;
+using System.IO;
+
+namespace TextFileProcessorDI {
     internal class Program {
         static void Main(string[] args) {
-            var service = new LineCounterService();
-            var prcessor = new TextFileProcessor(service);
+            var service = new LineOutputService();
+            var processor = new TextFileProcessor(service);
             Console.Write("パスの入力 : ");
 
-            prcessor.Run(args[0]);
+            string path = Console.ReadLine();
+            path = path.Trim().Trim('"');
+            processor.Run(path); 
         }
     }
 }
+
