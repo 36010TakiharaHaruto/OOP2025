@@ -91,7 +91,8 @@ namespace TenkiApp {
                     WindText.Text = $"風速: {weather.current_weather.windspeed} m/s";
                     WindDirText.Text = $"風向: {weather.current_weather.winddirection} °";
 
-                    WeatherIcon.Text = GetWeatherEmoji(weather.current_weather.temperature);
+                    // 現在の天気アイコンをweathercodeで取得
+                    WeatherIcon.Text = GetWeatherEmoji(weather.current_weather.weathercode);
 
                     DrawGraph(weather);
                     ShowWeeklyForecast(weather, selected.Name);
@@ -102,11 +103,15 @@ namespace TenkiApp {
             }
         }
 
-        private string GetWeatherEmoji(double temp) {
-            if (temp >= 25) return "☀️";
-            if (temp >= 15) return "⛅";
-            if (temp >= 5) return "🌧️";
-            return "❄️";
+        // 現在の天気・週間予報用アイコン
+        private string GetWeatherEmoji(int code) {
+            if (code == 0) return "☀️";
+            if (code >= 1 && code <= 3) return "⛅";
+            if (code >= 45 && code <= 48) return "🌫️";
+            if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) return "🌧️";
+            if (code >= 71 && code <= 77) return "❄️";
+            if (code >= 95 && code <= 99) return "⛈️";
+            return "☁️";
         }
 
         private string GetDayOfWeek(string date) {
@@ -119,8 +124,8 @@ namespace TenkiApp {
             GraphCanvas.Children.Clear();
             if (weather.daily == null || weather.daily.temperature_2m_max.Count == 0) return;
 
-            double width = GraphCanvas.Width;
-            double height = GraphCanvas.Height;
+            double width = GraphCanvas.ActualWidth > 0 ? GraphCanvas.ActualWidth : 400;
+            double height = GraphCanvas.ActualHeight > 0 ? GraphCanvas.ActualHeight : 200;
             double yMargin = 30;
 
             double maxTemp = double.MinValue;
@@ -131,6 +136,7 @@ namespace TenkiApp {
             int days = weather.daily.temperature_2m_max.Count;
             double xStep = width / (days - 1);
 
+            // 凡例
             TextBlock maxLegend = new TextBlock { Text = "最高気温", Foreground = Brushes.Orange, FontWeight = FontWeights.Bold };
             Canvas.SetLeft(maxLegend, 10); Canvas.SetTop(maxLegend, 0);
             GraphCanvas.Children.Add(maxLegend);
@@ -192,7 +198,7 @@ namespace TenkiApp {
                 for (int i = 0; i < weather.daily.time.Count; i++) {
                     double max = weather.daily.temperature_2m_max[i];
                     double min = weather.daily.temperature_2m_min[i];
-                    string emoji = GetWeatherEmoji(max);
+                    string emoji = GetWeatherEmoji(weather.daily.weathercode[i]);
                     string dayOfWeek = GetDayOfWeek(weather.daily.time[i]);
                     string dateStr = weather.daily.time[i].Substring(5).Replace("-", "/");
 
@@ -226,6 +232,7 @@ namespace TenkiApp {
         public double temperature { get; set; }
         public double windspeed { get; set; }
         public double winddirection { get; set; }
+        public int weathercode { get; set; }  
     }
 
     public class DailyWeather {
