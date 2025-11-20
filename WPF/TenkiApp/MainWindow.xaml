@@ -78,6 +78,8 @@
                     <WrapPanel x:Name="WeeklyPanel" Orientation="Horizontal" HorizontalAlignment="Center" />
                 </ScrollViewer>
             </Border>
+            
+            
         </Grid>
     </Grid>
 </Window>
