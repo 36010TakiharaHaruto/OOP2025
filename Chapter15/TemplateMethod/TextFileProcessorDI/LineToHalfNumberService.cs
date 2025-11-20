@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TextFileProcessorDI {
+    //問題15.1
     internal class LineToHalfNumberService : TextFileService{
         private int _count;
 

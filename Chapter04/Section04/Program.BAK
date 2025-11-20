@@ -22,8 +22,7 @@ namespace Section04 {
             //Sale? sale = new Sale {
             //    ShopName = "新宿店",
             //    ProductCategory = "洋菓子",
-            //    Amount = ５２３１００
-            
+            //    Amount = 523100
             //};
             Sale? sale = null;
 

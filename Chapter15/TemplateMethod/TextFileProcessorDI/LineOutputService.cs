@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TextFileProcessorDI {
+    //問題15.3
     public class LineOutputService : TextFileService {
         private int _count;
 
